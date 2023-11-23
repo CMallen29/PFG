@@ -2,7 +2,8 @@
 
 ## RECURSOS 
 
-
+  
+  - [Prototipos de páginas web - Figma](https://www.figma.com/)
   - [Repositorio de proyectos y recursos web](https://github.com/bradtraversy)
   - [Búsqueda de API´S gratuitas](https://publicapis.dev/)
 

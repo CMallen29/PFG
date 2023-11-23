@@ -1,6 +1,6 @@
 # PFG
 
-## API
+## API´S
 
 - [STEAM](https://steamapi.xpaw.me/)
 - [BATTLE NET](https://develop.battle.net/documentation/guides/community-apis)

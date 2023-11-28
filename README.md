@@ -1,6 +1,7 @@
 # PFG (Sandra / Carlos)
 
 ##  [APIS de librerias de juegos](https://playnite.link/addons.html)
+##  [Librerias bibliotecas de plataformas](https://github.com/JosefNemec/PlayniteExtensions/wiki)
 
 ## RECURSOS 
 

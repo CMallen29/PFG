@@ -1,5 +1,7 @@
 # PFG (Sandra / Carlos)
 
+##  [APIS de librerias de juegos](https://playnite.link/addons.html)
+
 ## RECURSOS 
 
   

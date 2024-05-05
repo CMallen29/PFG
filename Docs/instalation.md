@@ -1,4 +1,4 @@
-Iniciar el proyecto
+Crear el proyecto
 ```
 npx create-next-app@latest
 ```
@@ -58,3 +58,7 @@ Tailwind CSS -> estilos de Tailwind
 TS-Node Playground -> Typescript
 ```
  
+Iniciar el proyecto desde otro pc
+```
+npm install
+```  

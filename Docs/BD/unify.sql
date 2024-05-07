@@ -4,32 +4,33 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 -- Crear la tabla users con columnas obligatorias y fecha de registro automática
 CREATE TABLE users (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    email VARCHAR(255) UNIQUE NOT NULL,
-    username VARCHAR(50) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    name VARCHAR(100) NOT NULL,
+    email TEXT UNIQUE NOT NULL,
+    username TEXT UNIQUE NOT NULL,
+    password TEXT NOT NULL,
+    name TEXT NOT NULL,
     register_date TIMESTAMP DEFAULT now() NOT NULL,
-    avatar_path VARCHAR(255)
+    save_pokemon INTEGER[] NULL,
+    avatar_path TEXT
 );
 
 -- Crear la tabla delete_users
 CREATE TABLE delete_users (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    email VARCHAR(255) NOT NULL,
-    username VARCHAR(50) NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    name VARCHAR(100) NOT NULL,
+    email TEXT NOT NULL,
+    username TEXT NOT NULL,
+    password TEXT NOT NULL,
+    name TEXT NOT NULL,
     register_date TIMESTAMP NOT NULL,
-    avatar_path VARCHAR(255)
+    avatar_path TEXT
 );
 
 -- Crear la tabla change_users
 CREATE TABLE change_users (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     id_user UUID NOT NULL,
-    field_modified VARCHAR(50) NOT NULL,
-    old_value VARCHAR(255) NOT NULL,
-    new_value VARCHAR(255) NOT NULL,
+    field_modified TEXT NOT NULL,
+    old_value TEXT NOT NULL,
+    new_value TEXT NOT NULL,
     change_date TIMESTAMP DEFAULT now() NOT NULL,
     FOREIGN KEY (id_user) REFERENCES users(id)
 );

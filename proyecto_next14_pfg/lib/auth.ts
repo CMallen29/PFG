@@ -4,6 +4,7 @@ import CredentialsProvider from "next-auth/providers/credentials"; // Import the
 import { db } from "../model/database";
 import { compare } from "bcrypt";
 import { Adapter } from "next-auth/adapters";
+// import 
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(db) as Adapter,
@@ -60,4 +61,26 @@ export const authOptions: NextAuthOptions = {
       },
     }),
   ],
+  callbacks: {
+    async jwt({ token, user }) {
+      console.log("jwt", token, user);
+
+      if (user) {
+        return {
+          ...token,
+          username: user.username,
+        };
+      }
+      return token;
+    },
+    async session({ session,token }) {
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          username: token.username,
+        },
+      };
+    },
+  },
 };

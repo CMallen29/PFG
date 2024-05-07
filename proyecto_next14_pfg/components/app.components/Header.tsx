@@ -1,26 +1,26 @@
 import Link from "next/link";
-import SearchBar from "./SearchBar";
+import SearchBar from "./header.components/SearchBar";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import UserAccount from "./UserAccount";
-
+import UserAccount from "./header.components/UserAccount";
+import Image from "next/image";
+import GuestAccount from "./header.components/LoginButton";
+import ExploreButton from "./header.components/ExploreButton";
 
 const Header = async () => {
   const session = await getServerSession(authOptions);
 
   return (
-    <div className="w-full flex items-center justify-between p-8">
-      <Link href="/">Logo (HOME)</Link>
-      <div className="w-1/4">
-        <SearchBar placeholder={"Introduce tu búsqueda"} />
+    <div className="w-full flex items-center justify-between p-8 ">
+      <Link className="hover:drop-shadow-lg" href="/">
+        <Image src={"/image/logo.png"} alt="Logo unify" width={150} height={50} />
+      </Link>
+      <div className="w-1/3">
+        <SearchBar placeholder={"Buscar"} />
       </div>
-      <div>
-        {session?.user ? (
-          <UserAccount />
-        ) : (
-          <Link href="/login">Iniciar Sesion</Link>
-        )}
-        <Link href="/explore">Explorar</Link>
+      <div className="flex items-center p-2">
+        {session?.user ? <UserAccount /> : <GuestAccount />}
+        <ExploreButton />
       </div>
     </div>
   );

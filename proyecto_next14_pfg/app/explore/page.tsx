@@ -1,4 +1,4 @@
-import { searchName } from "@/model/pokemon.fetch";
+import { getPropiertiesPokemon, searchName } from "@/model/pokemon.fetch";
 
 async function Page({
   searchParams,
@@ -10,23 +10,20 @@ async function Page({
   //se usa searchParams porque el componente es de servidor - useSearchParams() es para cliente
   const query = searchParams?.query || "";
 
-  const data = await searchName(query);
-  // const berry = await getBerry(query);
-  // const contestType = await getContestType(query);
-  // const contestEffect = await getContestEffect(query);
-
-  // console.log(pokemon);
+  const data = await getPropiertiesPokemon(query);
 
   return (
     <div>
       page
-      {data.map((pokemon) => (
-        <div>
-          <hr />
-          <p>Nombre: {pokemon.name} </p>
-          <p>Url: {pokemon.url}</p>
-        </div>
-      ))}
+      {data.map((pokemon) => {
+        return (
+          <div>
+            <p>{pokemon.id}</p>
+            <p>{pokemon.name}</p>
+            <img src={pokemon.sprites.front_default} alt="" />
+          </div>
+        );
+      })}
     </div>
   );
 }

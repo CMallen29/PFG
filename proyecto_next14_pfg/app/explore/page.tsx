@@ -17,7 +17,7 @@ async function Page({
       page
       {data.map((pokemon) => {
         return (
-          <div>
+          <div key={pokemon.id}>
             <p>{pokemon.id}</p>
             <p>{pokemon.name}</p>
             <img src={pokemon.sprites.front_default} alt="" />

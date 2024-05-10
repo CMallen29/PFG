@@ -4,7 +4,6 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import UserAccount from "./UserAccount";
 
-
 const Header = async () => {
   const session = await getServerSession(authOptions);
 
@@ -12,7 +11,7 @@ const Header = async () => {
     <div className="w-full flex items-center justify-between p-8">
       <Link href="/">Logo (HOME)</Link>
       <div className="w-1/4">
-        <SearchBar placeholder={"Introduce tu búsqueda"} />
+        <SearchBar placeholder={"Busca el nombre de un pokemon"} />
       </div>
       <div>
         {session?.user ? (

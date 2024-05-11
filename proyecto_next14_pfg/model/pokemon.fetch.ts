@@ -1,29 +1,40 @@
-import { Result } from "../types/search.types";
+import { Result, Search } from "../types/search.types";
 import { PokemonSimple } from "../types/pokemon.types";
 
-function getField(field: string): Promise<Result[]> {
-  const url = `https://pokeapi.co/api/v2/${field}?limit=1400&offset=0`;
-  return fetch(url)
-    .then((response) => response.json())
-    .then((data) => data.results);
+export function getField(
+  field: string,
+  limit: number = 99999,
+  offset: number = 0
+): Promise<Search> {
+  const url = `https://pokeapi.co/api/v2/${field}?limit=${limit}&offset=${offset}}`;
+  return fetch(url).then((response) => response.json());
 }
 
-async function getPokemon() {
-  return await getField("pokemon");
-}
-
-export async function searchName(query: string) {
-  const resultPokemon = await getPokemon();
-  return resultPokemon.filter((pokemon) => pokemon.name.includes(query));
-}
-
-export async function getPropiertiesPokemon(
+export async function filterPokemon(
+  list: Result[],
   query: string
+): Promise<Result[]> {
+  return list.filter((pokemon) => pokemon.name.includes(query));
+}
+
+export async function getPropertiesPokemon(
+  listURL: Result[],
+  ITEMS_PER_PAGE: number,
+  offset: number
 ): Promise<PokemonSimple[]> {
-  const filterRaw = await searchName(query);
-  return await Promise.all(
-    filterRaw.map((pokemon) =>
-      fetch(pokemon.url).then((response) => response.json())
-    )
-  );
+  const limit = offset + ITEMS_PER_PAGE;
+
+  try {
+    return await Promise.all(
+      listURL
+        .slice(offset, limit)
+        .map((pokemon) =>
+          fetch(pokemon.url).then((response) => response.json())
+        )
+    );
+  } catch (error) {
+    console.log("8" + error);
+    //pagina notfound
+    return [];
+  }
 }

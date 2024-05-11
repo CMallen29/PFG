@@ -47,7 +47,7 @@ const loginForm = () => {
       console.log("Error en el login");
       alert("Error en el login, comprueba tus credenciales");
     } else {
-      // console.log("Login correcto");
+
       router.push("/");
       router.refresh();
     }

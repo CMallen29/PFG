@@ -1,6 +1,7 @@
+'use server';
+
 import { db } from "../../../model/database";
 import { NextResponse } from "next/server";
-import { hash } from "bcrypt";
 import * as z from "zod";
 
 // esquema para la validación de los datos
@@ -10,17 +11,16 @@ const userSchema = z.object({
     .min(1, "Usuario obligatorio")
     .max(20, "Máximo 20 caracteres"),
   email: z.string().min(1, "Email obligatorio").email("Email incorrecto"),
-  password: z
-    .string()
-    .min(1, "Contraseña obligatoria")
-    .min(8, "Al menos 8 caracteres"),
+  name: z.string().min(1, "Nombre obligatorio"),
 });
 
 export async function POST(request: Request) {
+
+
   try {
     const body = await request.json();
 
-    const { email, username, password } = userSchema.parse(body);
+    const {  email, username, name } = userSchema.parse(body);
 
     // Comprobar si se repite el email
     const existUserEmail = await db.users.findUnique({
@@ -51,22 +51,19 @@ export async function POST(request: Request) {
     }
 
     //Guardar los datos en la base de datos
-    const hashPassword = await hash(password, 10);
-    const newUser = await db.users.create({
-      data: {
-        name: username,
-        email,
-        username,
-        password: hashPassword,
+    const updateUser = await db.users.update({
+      where: {
+        username: username ,
       },
-    });
-
-    // Devolvemos el usuario sin la contraseña
-    const { password: newUserPassword, ...rest } = newUser;
-
+      data: {
+        email: email,
+        username: username,
+        name: name,
+      },
+    });    
     return NextResponse.json({
-      user: rest,
-      message: "Usuario creado",
+      user: updateUser,
+      message: "Usuario actualizado",
       status: 201,
     });
   } catch (error) {

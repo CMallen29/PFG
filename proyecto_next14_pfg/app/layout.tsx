@@ -17,11 +17,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className="min-w-full bg-[url('/image/bgProfile.jpg')] bg-contain bg-top bg-no-repeat bg-teal-950">
         <header className="bg-teal-950/0 absolute flex  max-h-24 w-full">
           <Header />
         </header>
-        <main>{children}</main>
+        <main className="pt-40">{children}</main>
         <footer className="h-20 bg-slate-500">
           <h2>Pie de página</h2>
         </footer>

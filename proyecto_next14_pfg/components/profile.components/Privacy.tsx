@@ -1,37 +1,112 @@
+"use client";
+
 import { Button } from "../login.components/ui/button";
 import { Input } from "../login.components/ui/input";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/login.components/ui/form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { useRouter } from "next/navigation";
+import { User } from "next-auth";
 
-const Privacy = () => {
+const formSchema = z.object({
+  username: z
+    .string()
+    .min(1, "Usuario obligatorio")
+    .max(20, "Máximo 20 caracteres"),
+  name: z.string().min(1, "Nombre obligatorio"),
+  email: z.string().min(1, "Email obligatorio").email("Email incorrecto"),
+});
+
+const Privacy = async (user: User) => {
+  const router = useRouter();
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      username: "",
+      name: "",
+      email: "",
+    },
+  });
+
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    // console.log(values);
+    const response = await fetch("/api/updateUser", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: values.username,
+        name: values.name,
+        email: values.email,
+      }),
+    });
+
+    if (response.ok) {
+      router.push("/profile");
+      console.log("Usuario modificado");
+    } else {
+      console.error("Error al actualizar el usuario");
+    }
+  };
+
   return (
-    <div className=" bg-teal-900 min-w-fit w-full min-h-fit h-full rounded-xl text-white">
-      <div>
-        <h1 className="text-2xl font-bold  mx-2 p-2">Privacidad</h1>
-        <div className="grid grid-cols-2 items-center bg-teal-950 p-4">
-          <div>
-            <h1></h1>
-            <div className="flex flex-col items-center justify-center gap-2 w-3/4 mt-10 m-2 text-black">
-            {/* <h1 className="uppercase self-start text-white">mis datos</h1> */}
-              <label htmlFor="username" className="self-start text-white">Nombre de usuario  <span className="text-yellow-500 font-bold">* CAMPO ÚNICO</span></label>
-              <Input id="username" name="username" placeholder="Username" value={'Pacoskater34'} />
-              <label htmlFor="name" className="self-start text-white">Nombre</label>
-              <Input id="name" placeholder="Nombre" value={'Francisco'}/>
-              <label htmlFor="email" className="self-start text-white">Email</label>
-              <Input id="email" type="email" placeholder="Correo" value={'fran89@gmail.com'}/>
-              <Button className="self-start mt-6 ml-0" variant={'unify'}>MODIFICAR</Button>
-            </div>
-          </div>
-          <div className="flex flex-col items-center justify-center gap-2 w-3/4 mt-10 m-2 text-black">
-              <label htmlFor="password" className="self-start text-white">Contraseña actual</label>
-              <Input id="password" type="password" placeholder="*********"/>
-              <label htmlFor="passNew" className="self-start text-white">Contraseña nueva</label>
-              <Input id="passNew" type="password" placeholder="*********"/>
-              <label htmlFor="passNewCheck" className="self-start text-white">Repite la contraseña</label>
-              <Input id="passNewCheck" type="password" placeholder="*********" />
-              <Button className="self-start mt-6 ml-0" variant={'unifyOut'}>MODIFICAR</Button>
-          </div>
-        </div>
-      </div>
-    </div>
+    
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
+        <FormField
+          control={form.control}
+          name="username"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Nombre de usuario</FormLabel>
+              <FormControl>
+                <Input placeholder={user.username} {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="name"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Nombre</FormLabel>
+              <FormControl>
+                <Input placeholder={user.name+""} {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Email</FormLabel>
+              <FormControl>
+                <Input placeholder={user.email+""} {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <Button variant={"unify"} className="w-full" type="submit">
+          MODIFICAR
+        </Button>
+      </form>
+    </Form>
   );
 };
 

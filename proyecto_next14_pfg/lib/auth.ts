@@ -44,7 +44,7 @@ export const authOptions: NextAuthOptions = {
 
         // Validamos la contraseña del usuario
         const passwordValid = await compare(
-          credentials.password + "",
+          credentials.password,
           existUser.password
         );
 
@@ -54,7 +54,7 @@ export const authOptions: NextAuthOptions = {
 
         // Si todo es correcto, devolvemos el usuario
         return {
-          id: existUser.id + "",
+          id: existUser.id,
           username: existUser.username,
           email: existUser.email,
         };
@@ -68,7 +68,7 @@ export const authOptions: NextAuthOptions = {
       if (user) {
         return {
           ...token,
-          username: user.username,
+          username: user.id,
         };
       }
       return token;

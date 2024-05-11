@@ -1,3 +1,4 @@
+import CardPokemon from "@/components/app.components/CardPokemon";
 import Pagination from "@/components/app.components/pagination";
 import {
   filterPokemon,
@@ -29,15 +30,7 @@ async function Page({
   return (
     <div>
       page
-      {(await dataPokemon).map((pokemon) => {
-        return (
-          <div key={pokemon.id}>
-            <p>{pokemon.id}</p>
-            <p>{pokemon.name}</p>
-            <img src={pokemon.sprites.front_default} alt="" />
-          </div>
-        );
-      })}
+      <CardPokemon dataPokemon={dataPokemon} />
       <Pagination totalPages={totalPages} />
     </div>
   );

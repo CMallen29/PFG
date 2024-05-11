@@ -2,7 +2,6 @@
 
 import { MagnifyingGlassIcon } from "@heroicons/react/16/solid";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
-import { useDebouncedCallback } from "use-debounce";
 
 const SearchBar = ({ placeholder }: { placeholder: string }) => {
   //se usa useSearchParams porque el componente es de cliente - searchParams es para servidor
@@ -10,8 +9,7 @@ const SearchBar = ({ placeholder }: { placeholder: string }) => {
   const pathname = "/explore";
   const { replace } = useRouter();
 
-  const handleSearch = useDebouncedCallback((term) => {
-    console.log(`Searching... ${term}`);
+  function handleSearch(term: string) {
     const params = new URLSearchParams(searchParams);
     if (term) {
       if (term !== params.get("query")) {
@@ -23,7 +21,8 @@ const SearchBar = ({ placeholder }: { placeholder: string }) => {
       params.delete("page");
     }
     replace(`${pathname}?${params.toString()}`);
-  }, 300);
+    document.querySelector<HTMLInputElement>("input[name=search")!.value = "";
+  }
 
   return (
     <div className="relative flex flex-1 flex-shrink-0 ">
@@ -31,10 +30,13 @@ const SearchBar = ({ placeholder }: { placeholder: string }) => {
         Search
       </label>
       <input
+        name="search"
         className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
         placeholder={placeholder}
-        onChange={(e) => {
-          handleSearch(e.target.value);
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            handleSearch(e.currentTarget.value);
+          }
         }}
         defaultValue={searchParams.get("query")?.toString()}
       />

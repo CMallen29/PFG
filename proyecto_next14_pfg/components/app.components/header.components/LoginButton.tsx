@@ -5,12 +5,12 @@ import Link from "next/link";
 const GuestAccount = () => {
   return (
     <>
-      <Button variant={"unify"}>
-        <UserCircleIcon width={"25"} />
-        <Link className="p-2 " href="/login">
+      <Link className="p-2 " href="/login">
+        <Button variant={"unify"}>
+          <UserCircleIcon width={"25"} />
           Iniciar Sesión
-        </Link>
-      </Button>
+        </Button>
+      </Link>
     </>
   );
 };

@@ -1,15 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // images:{
-  //   remotePatterns:[
-  //     {
-  //       // hostname: 'url de la imagen',
-  //     },
-  //     {
-  //       // hostname: 'res.cloudinary.com',
-  //     },
-  //   ]
-  // }
+  images: {
+    remotePatterns: [
+      {
+        hostname: "raw.githubusercontent.com",
+      },
+    ],
+  },
 };
 
 export default nextConfig;

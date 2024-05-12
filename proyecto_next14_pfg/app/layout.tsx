@@ -17,8 +17,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="min-w-full bg-[url('/image/bgProfile.jpg')] bg-contain bg-top bg-no-repeat bg-teal-950">
-        <header className="bg-teal-950/0 absolute flex  max-h-24 w-full">
+      <body className="min-w-full bg-teal-900 bg-cover bg-top bg-no-repeat">
+        <header className="absolute flex  max-h-24 w-full">
           <Header />
         </header>
         <main className="pt-40">{children}</main>

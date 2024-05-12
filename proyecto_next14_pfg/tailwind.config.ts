@@ -18,6 +18,9 @@ const config = {
       },
     },
     extend: {
+      backgroundImage: {
+        'poke-img': "url('/image/bgProfile.jpg')",
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },

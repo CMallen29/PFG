@@ -16,7 +16,7 @@ const Header = async () => {
         <Image src={"/image/logo.png"} alt="Logo unify" width={150} height={50} />
       </Link>
       <div className="w-1/3">
-        <SearchBar placeholder={"Buscar"} />
+        <SearchBar placeholder={"Busca el nombre de un Pokémon..."} />
       </div>
       <div className="flex items-center p-2">
         {session?.user ? <UserAccount /> : <GuestAccount />}

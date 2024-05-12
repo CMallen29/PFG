@@ -5,12 +5,13 @@ import Link from "next/link";
 const ExploreButton = () => {
   return (
     <>
-      <Button variant={"unify"}>
-        <MagnifyingGlassCircleIcon width={"25"} />
-        <Link className="m-2 " href="/explore">
+      <Link className="m-2 " href="/explore">
+        <Button variant={"unify"}>
+          <MagnifyingGlassCircleIcon width={"25"} />
+          &nbsp;&nbsp; 
           Explorar
-        </Link>
-      </Button>
+        </Button>
+      </Link>
     </>
   );
 };

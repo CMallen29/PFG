@@ -1,5 +1,5 @@
-import CardPokemon from "@/components/app.components/CardPokemon";
-import Pagination from "@/components/app.components/pagination";
+import CardPokemon from "@/components/explore.components/CardPokemon";
+import Pagination from "@/components/explore.components/pagination";
 import {
   filterPokemon,
   getField,

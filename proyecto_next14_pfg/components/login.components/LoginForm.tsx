@@ -45,6 +45,7 @@ const loginForm = () => {
 
     if (loginData?.error) {
       console.log("Error en el login");
+      console.log(loginData.error);
       alert("Error en el login, comprueba tus credenciales");
     } else {
 

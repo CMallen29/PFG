@@ -5,6 +5,6 @@ export default function middleware(req) {
   const url = req.url;
 
   if (!verify && url.includes("/profile")) {
-    return NextResponse.redirect("/login");
+    return NextResponse.redirect(new URL('/login', req.url));
   }
 }

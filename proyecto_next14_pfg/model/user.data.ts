@@ -3,13 +3,12 @@ import { db } from "./database";
 import { authOptions } from "@/lib/auth";
 
 async function getUserById() {
-  
-   //Recogemos el uuid de la sesion
-   const session = await getServerSession(authOptions);
+  //Recogemos el uuid de la sesion
+  const session = await getServerSession(authOptions);
 
-   //Obtenemos los datos del usuario segun su uuid
-   const uuid = session?.user.username;
-  
+  //Obtenemos los datos del usuario segun su uuid
+  const uuid = session?.user.username;
+
   try {
     const user = await db.users.findUnique({
       where: {
@@ -21,9 +20,7 @@ async function getUserById() {
       throw new Error("User not found.");
     }
 
-    console.log("User fetched:", user); 
     return user;
- 
   } catch (error) {
     console.error("Failed to fetch user:", error);
     throw new Error("Failed to fetch user.");

@@ -74,3 +74,9 @@ CREATE TRIGGER before_update_user
 BEFORE UPDATE ON users
 FOR EACH ROW
 EXECUTE FUNCTION before_update_user();
+
+-- Seed de usuarios
+INSERT INTO users (email, username, password, name, save_pokemon, avatar_path)
+VALUES 
+    ('p@p.es,popopopopop,$2b$10$qRxxYKcnBRcoDTIdTUQVjuNdiIy3tAvMLXIrfH5tBrCZgAyBRP/e6,pop,,user.webp'),
+    ('admin@mail.com,admin,$2b$10$xAr3/AmtF7I3.gz59MWtG.J/NI7h7eOtNeMY28vJvBk0R.dohKyOC,admin,,admin.jpg')

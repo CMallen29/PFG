@@ -62,3 +62,26 @@ Iniciar el proyecto desde otro pc
 ```
 npm install
 ```  
+
+Actualizar babel-eslint
+```
+npm uninstall babel-eslint
+npm install @babel/eslint-parser -D
+```
+
+Instalar plugin babel
+```
+npm install @babel/preset-react -D
+```
+
+Opciones de parseo en .eslintrc.json
+```
+parserOptions: {
+  requireConfigFile: false,
+  babelOptions: {
+    presets: ["@babel/preset-react"],
+  },
+},
+```
+
+

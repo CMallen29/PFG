@@ -1,12 +1,16 @@
 {
-  "extends": ["next/core-web-vitals","airbnb","plugin:prettier/recommended"],
-  "parser":"@typescript-eslint/parser",
+  "extends": ["next/core-web-vitals", "airbnb", "plugin:prettier/recommended"],
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
+    "requireConfigFile": false,
+    "babelOptions": {
+      "presets": ["@babel/preset-react"]
+    },
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "rules":{
-    "max-len": ["error", 140 ],
+  "rules": {
+    "max-len": ["error", 140],
     "quotes": [2, "single", { "avoidEscape": true }]
   }
 }

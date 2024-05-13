@@ -10,7 +10,7 @@ CREATE TABLE users (
     name TEXT NOT NULL,
     register_date TIMESTAMP DEFAULT now() NOT NULL,
     save_pokemon INTEGER[] NULL,
-    avatar_path TEXT
+    avatar_path TEXT DEFAULT 'user.webp'
 );
 
 -- Crear la tabla delete_users

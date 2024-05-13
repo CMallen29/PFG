@@ -49,7 +49,7 @@ const RegisterForm = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     // console.log(values);
-    const response = await fetch("/api/user", {
+    const response = await fetch("/api/createUser", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

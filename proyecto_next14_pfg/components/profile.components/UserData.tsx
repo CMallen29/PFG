@@ -1,9 +1,10 @@
-import { User } from "next-auth";
+import { getUserById } from "@/model/user.data";
 import { Button } from "../login.components/ui/button";
 import { PencilSquareIcon } from "@heroicons/react/16/solid";
 
-const UserData = (user: User) => {
+const UserData = async () => {
   //function editField(field: string) {}
+  const user = await getUserById();
 
   return (
     <div

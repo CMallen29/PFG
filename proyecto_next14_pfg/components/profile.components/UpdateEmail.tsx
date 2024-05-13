@@ -16,27 +16,27 @@ import { z } from "zod";
 import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
-  name: z.string().min(1, "Nombre obligatorio").max(20, "Máximo 20 caracteres"),
+  email: z.string().min(1, "Email obligatorio").email("Email no válido"),
 });
 
-const UpdateName = () => {
+const UpdateEmail = () => {
   const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
+      email: "",
     },
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     //Llamamos a updateUsername para modificar el nombre de usuario
-    const response = await fetch("/api/updateUser/updateName", {
+    const response = await fetch("/api/updateUser/updateEmail", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: values.name,
+        email: values.email,
       }),
     });
 
@@ -53,10 +53,10 @@ const UpdateName = () => {
       <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
         <FormField
           control={form.control}
-          name="name"
+          name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Nuevo nombre</FormLabel>
+              <FormLabel>Cambio de email</FormLabel>
               <FormControl>
                 <Input {...field} />
               </FormControl>
@@ -72,4 +72,4 @@ const UpdateName = () => {
   );
 };
 
-export default UpdateName;
+export default UpdateEmail;

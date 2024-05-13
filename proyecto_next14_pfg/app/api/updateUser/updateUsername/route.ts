@@ -1,9 +1,9 @@
 "use server";
 
-import { db } from "../../../model/database";
+import { db } from "../../../../model/database";
 import { NextResponse } from "next/server";
 import * as z from "zod";
-import { getUserById } from "../../../model/user.data";
+import { getUserById } from "../../../../model/user.data";
 
 // esquema para la validación de los datos
 const userSchema = z.object({

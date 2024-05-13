@@ -1,5 +1,6 @@
 import PokemonStored from "@/components/profile.components/PokemonStored";
-import UpdateName from "@/components/profile.components/UpdateName";
+import UpdateEmail from "@/components/profile.components/UpdateEmail";
+import UpdateUsername from "@/components/profile.components/UpdateUserame";
 import UserData from "@/components/profile.components/UserData";
 import Username from "@/components/profile.components/Username";
 
@@ -18,7 +19,8 @@ const page = () => {
                     <UserData />
                   </div>
                   <div className="flex flex-col items-center justify-center gap-2 w-full mt-10 m-2 text-black">
-                    <UpdateName />
+                    <UpdateUsername />
+                    <UpdateEmail />
                   </div>
                 </div>
               </div>

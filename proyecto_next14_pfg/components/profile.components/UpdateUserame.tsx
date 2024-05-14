@@ -59,7 +59,7 @@ const UpdateUsername = () => {
           name="username"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Nuevo nombre de usuario</FormLabel>
+              <FormLabel className="text-white font-bold">Nuevo nombre de usuario</FormLabel>
               <FormControl>
                 <Input {...field} />
               </FormControl>

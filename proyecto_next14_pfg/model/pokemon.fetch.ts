@@ -1,12 +1,14 @@
 import { Result, Search } from "../types/search.types";
 import { PokemonSimple } from "../types/pokemon.types";
 
+const URL = "https://pokeapi.co/api/v2/";
+
 export function getField(
   field: string,
   limit: number = 99999,
   offset: number = 0
 ): Promise<Search> {
-  const url = `https://pokeapi.co/api/v2/${field}?limit=${limit}&offset=${offset}}`;
+  const url = `${URL}${field}?limit=${limit}&offset=${offset}}`;
   return fetch(url).then((response) => response.json());
 }
 
@@ -37,4 +39,21 @@ export async function getPropertiesPokemon(
     //pagina notfound
     return [];
   }
+}
+
+export async function fetchPokemon(
+  pokemons: number[],
+  offset: number,
+  ITEMS_PER_PAGE: number
+): Promise<PokemonSimple[]> {
+  const limit = offset + ITEMS_PER_PAGE;
+  const urlSingle = `${URL}pokemon/`;
+
+  return await Promise.all(
+    pokemons
+      .slice(offset, limit)
+      .map((pokemon) =>
+        fetch(urlSingle + pokemon).then((response) => response.json())
+      )
+  );
 }

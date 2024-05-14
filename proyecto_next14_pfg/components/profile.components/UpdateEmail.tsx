@@ -56,7 +56,7 @@ const UpdateEmail = () => {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Cambio de email</FormLabel>
+              <FormLabel className="text-white font-bold">Cambio de email</FormLabel>
               <FormControl>
                 <Input {...field} />
               </FormControl>

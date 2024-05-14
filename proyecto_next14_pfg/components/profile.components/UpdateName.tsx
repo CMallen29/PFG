@@ -56,7 +56,7 @@ const UpdateName = () => {
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Nuevo nombre</FormLabel>
+              <FormLabel className="text-white font-bold">Nuevo nombre</FormLabel>
               <FormControl>
                 <Input {...field} />
               </FormControl>

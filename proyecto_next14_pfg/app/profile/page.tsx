@@ -5,7 +5,7 @@ import UpdateUsername from "@/components/profile.components/UpdateUserame";
 import UserData from "@/components/profile.components/UserData";
 import Username from "@/components/profile.components/Username";
 
-const page = () => {
+const page = ({ searchParams }: { searchParams?: { page?: string;};}) => {
   return (
     <div className="flex flex-col items-center">
       <div className="min-w-fit w-4/5 min-h-fit h-4/6 bg-black/80 my-24 rounded-xl">
@@ -19,7 +19,7 @@ const page = () => {
                   <div className="flex flex-col items-center justify-center gap-2 w-auto mt-10 m-2">
                     <UserData />
                   </div>
-                  <div className="flex flex-col items-center justify-center gap-2 w-full mt-10 m-2 text-black">
+                  <div className="flex gap-8 text-black">
                     <UpdateUsername />
                     <UpdateEmail />
                     <UpdateName />
@@ -28,7 +28,7 @@ const page = () => {
               </div>
             </section>
           </div>
-          <PokemonStored />
+          <PokemonStored page={searchParams?.page}/>
         </div>
       </div>
     </div>

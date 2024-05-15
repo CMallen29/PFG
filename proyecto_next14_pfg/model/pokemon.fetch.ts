@@ -6,6 +6,7 @@ export function getField(
   limit: number = 99999,
   offset: number = 0
 ): Promise<Search> {
+  //limit y offset para obtener todos los resultados. La api solo devuelve 20 resultados
   const url = `https://pokeapi.co/api/v2/${field}?limit=${limit}&offset=${offset}}`;
   return fetch(url).then((response) => response.json());
 }
@@ -33,7 +34,7 @@ export async function getPropertiesPokemon(
         )
     );
   } catch (error) {
-    console.log("8" + error);
+    console.log(error);
     //pagina notfound
     return [];
   }

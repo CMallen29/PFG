@@ -9,10 +9,10 @@ export interface PokemonSimple {
 }
 
 export interface Pokemon {
-  abilities: Ability2[];
+  abilities: PokemonAbility[];
   base_experience: number;
   cries: Cries;
-  forms: Ability[];
+  forms: NamedAPIResource[];
   game_indices: Gameindex[];
   height: number;
   held_items: Helditem[];
@@ -23,8 +23,8 @@ export interface Pokemon {
   name: string;
   order: number;
   past_abilities: any[];
-  past_types: any[];
-  species: Ability;
+  past_types: PokemonTypePast[];
+  species: NamedAPIResource;
   sprites: Sprites;
   stats: Stat[];
   types: Type[];
@@ -33,13 +33,13 @@ export interface Pokemon {
 
 export interface Type {
   slot: number;
-  type: Ability;
+  type: NamedAPIResource;
 }
 
 export interface Stat {
   base_stat: number;
   effort: number;
-  stat: Ability;
+  stat: NamedAPIResource;
 }
 
 export interface Sprites {
@@ -190,29 +190,29 @@ export interface Dreamworld {
 }
 
 export interface Move {
-  move: Ability;
+  move: NamedAPIResource;
   version_group_details: Versiongroupdetail[];
 }
 
 export interface Versiongroupdetail {
   level_learned_at: number;
-  move_learn_method: Ability;
-  version_group: Ability;
+  move_learn_method: NamedAPIResource;
+  version_group: NamedAPIResource;
 }
 
 export interface Helditem {
-  item: Ability;
+  item: NamedAPIResource;
   version_details: Versiondetail[];
 }
 
 export interface Versiondetail {
   rarity: number;
-  version: Ability;
+  version: NamedAPIResource;
 }
 
 export interface Gameindex {
   game_index: number;
-  version: Ability;
+  version: NamedAPIResource;
 }
 
 export interface Cries {
@@ -220,13 +220,18 @@ export interface Cries {
   legacy: string;
 }
 
-export interface Ability2 {
-  ability: Ability;
+export interface PokemonAbility {
+  ability: NamedAPIResource;
   is_hidden: boolean;
   slot: number;
 }
 
-export interface Ability {
+export interface NamedAPIResource {
   name: string;
   url: string;
+}
+
+export interface PokemonTypePast {
+  generation: NamedAPIResource;
+  types: Type[];
 }

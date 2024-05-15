@@ -24,6 +24,9 @@ async function CardPokemon({
               width="150"
               height="150"
             />
+            {pokemon.types.map((value) => (
+              <span key={value.type.name} className="p-2">{value.type.name}</span>
+            ))}
           </div>
         );
       })}

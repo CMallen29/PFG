@@ -3,39 +3,59 @@ import * as React from "react";
 import { Result } from "@/types/search.types";
 import { Toggle } from "./ui/toggle";
 import { useRouter, useSearchParams } from "next/navigation";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 function ToggleType({ data }: { data: Result[] }) {
   const searchParams = useSearchParams();
   const pathname = "/explore";
   const { replace } = useRouter();
 
-  function handleFilter(value: boolean, type: Result) {
-    const params = new URLSearchParams(searchParams);
-    if (value) {
-      console.log(value + type.name);
+  const [value, setValue] = React.useState("");
 
-      params.append("type", type.name);
-    } else {
-      console.log("off" + type.name);
-      params.delete("type", type.name);
+  function handleFilter(value: string) {
+    const params = new URLSearchParams(searchParams);
+    if (value === "clear") {
+      params.delete("type");
+    } else{
+      console.log(value + "on");
+      params.set("type", value);
     }
     replace(`${pathname}?${params.toString()}`);
   }
 
   return (
     <div>
-      {data.map((type) => (
-        <Toggle
-          key={type.name}
-          className="flex items-center m-1  justify-center rounded"
-          value={type.name}
-          onPressedChange={(value) => {
-            handleFilter(value, type);
+      <div>
+        <ToggleGroup
+          type="single"
+          value={value}
+          className="flex flex-wrap justify-center"
+          onValueChange={(value) => {
+            if (value ) {
+              setValue(value);
+              handleFilter(value);
+            }
           }}
         >
-          {type.name}
-        </Toggle>
-      ))}
+          <ToggleGroupItem
+            value="clear"
+            key="clear"
+            className="flex items-center m-1  justify-center rounded"
+          >
+            Limpiar
+          </ToggleGroupItem>
+          {data.map((type) => (
+            <ToggleGroupItem
+              value={type.name}
+              key={type.name}
+              className="flex items-center m-1  justify-center rounded"
+            >
+              {type.name}
+            </ToggleGroupItem>
+          ))}
+        </ToggleGroup>
+      </div>
+      <div></div>
     </div>
   );
 }

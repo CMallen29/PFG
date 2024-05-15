@@ -1,3 +1,5 @@
+import { Result } from "./search.types";
+
 export interface PokemonSimple {
   base_experience: number;
   height: number;
@@ -6,13 +8,14 @@ export interface PokemonSimple {
   order: number;
   weight: number;
   sprites: Sprites;
+  types: Type[];
 }
 
 export interface Pokemon {
   abilities: PokemonAbility[];
   base_experience: number;
   cries: Cries;
-  forms: NamedAPIResource[];
+  forms: Result[];
   game_indices: Gameindex[];
   height: number;
   held_items: Helditem[];
@@ -24,7 +27,7 @@ export interface Pokemon {
   order: number;
   past_abilities: any[];
   past_types: PokemonTypePast[];
-  species: NamedAPIResource;
+  species: Result;
   sprites: Sprites;
   stats: Stat[];
   types: Type[];
@@ -33,13 +36,13 @@ export interface Pokemon {
 
 export interface Type {
   slot: number;
-  type: NamedAPIResource;
+  type: Result;
 }
 
 export interface Stat {
   base_stat: number;
   effort: number;
-  stat: NamedAPIResource;
+  stat: Result;
 }
 
 export interface Sprites {
@@ -190,29 +193,29 @@ export interface Dreamworld {
 }
 
 export interface Move {
-  move: NamedAPIResource;
+  move: Result;
   version_group_details: Versiongroupdetail[];
 }
 
 export interface Versiongroupdetail {
   level_learned_at: number;
-  move_learn_method: NamedAPIResource;
-  version_group: NamedAPIResource;
+  move_learn_method: Result;
+  version_group: Result;
 }
 
 export interface Helditem {
-  item: NamedAPIResource;
+  item: Result;
   version_details: Versiondetail[];
 }
 
 export interface Versiondetail {
   rarity: number;
-  version: NamedAPIResource;
+  version: Result;
 }
 
 export interface Gameindex {
   game_index: number;
-  version: NamedAPIResource;
+  version: Result;
 }
 
 export interface Cries {
@@ -221,17 +224,12 @@ export interface Cries {
 }
 
 export interface PokemonAbility {
-  ability: NamedAPIResource;
+  ability: Result;
   is_hidden: boolean;
   slot: number;
 }
 
-export interface NamedAPIResource {
-  name: string;
-  url: string;
-}
-
 export interface PokemonTypePast {
-  generation: NamedAPIResource;
+  generation: Result;
   types: Type[];
 }

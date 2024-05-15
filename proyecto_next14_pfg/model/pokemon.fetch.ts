@@ -1,5 +1,6 @@
+import { Pokemons } from "@/types/type.types";
 import { Result, Search } from "../types/search.types";
-import { PokemonSimple } from "../types/pokemon.types";
+import { PokemonSimple } from "@/types/pokemon.types";
 
 const URL = "https://pokeapi.co/api/v2/";
 
@@ -18,6 +19,12 @@ export async function filterPokemon(
   query: string
 ): Promise<Result[]> {
   return list.filter((pokemon) => pokemon.name.includes(query));
+}
+
+export async function typePokemon(list: string): Promise<Result[]> {
+  return fetch(list).then((response) => response.json()
+.then((data) => data.pokemon)
+.then((data) => data.map((item: Pokemons) => item.pokemon)));
 }
 
 export async function getPropertiesPokemon(
@@ -57,4 +64,18 @@ export async function fetchPokemon(
         fetch(urlSingle + pokemon).then((response) => response.json())
       )
   );
+}
+
+//Antiguo filtro ------------------------------------------------------------
+export async function mergeTypePokemon(list: Result[]): Promise<Result[]> {
+  const result = await Promise.all(
+    list.map((type) =>
+      fetch(type.url)
+        .then((response) => response.json())
+        .then((data) => data.pokemon)
+        .then((data) => data.map((item: Pokemons) => item.pokemon))
+    )
+  );
+
+  return result.flat(2);
 }

@@ -10,10 +10,10 @@ export interface Type {
   name: string;
   names: Name[];
   past_damage_relations: any[];
-  pokemon: Pokemon[];
+  pokemon: Pokemons[];
 }
 
-export interface Pokemon {
+export interface Pokemons {
   pokemon: Result;
   slot: number;
 }

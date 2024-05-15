@@ -1,17 +1,15 @@
 import PokemonStored from "@/components/profile.components/PokemonStored";
-import Privacy from "@/components/profile.components/Privacy";
+import UpdateEmail from "@/components/profile.components/UpdateEmail";
+import UpdateName from "@/components/profile.components/UpdateName";
+import UpdateUsername from "@/components/profile.components/UpdateUserame";
 import UserData from "@/components/profile.components/UserData";
 import Username from "@/components/profile.components/Username";
-import { getUserById } from "@/model/user.data";
 
-const page = async() => {
-
-  const user = await getUserById();
-
+const page = ({ searchParams }: { searchParams?: { page?: string;};}) => {
   return (
     <div className="flex flex-col items-center">
       <div className="min-w-fit w-4/5 min-h-fit h-4/6 bg-black/80 my-24 rounded-xl">
-        <Username/>
+        <Username />
         <div className="flex flex-col items-center justify-center p-10 ">
           <div className=" bg-teal-900 min-w-fit w-full min-h-fit h-full rounded-xl text-white">
             <section>
@@ -19,13 +17,18 @@ const page = async() => {
               <div className="items-center bg-teal-950 p-4">
                 <div>
                   <div className="flex flex-col items-center justify-center gap-2 w-auto mt-10 m-2">
-                    <UserData {...user}/>
+                    <UserData />
+                  </div>
+                  <div className="flex gap-8 text-black">
+                    <UpdateUsername />
+                    <UpdateEmail />
+                    <UpdateName />
                   </div>
                 </div>
               </div>
             </section>
           </div>
-          <PokemonStored />
+          <PokemonStored page={searchParams?.page}/>
         </div>
       </div>
     </div>

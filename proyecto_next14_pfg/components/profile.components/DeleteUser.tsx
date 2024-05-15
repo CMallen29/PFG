@@ -1,7 +1,6 @@
 "use client";
 
 import { Button } from "../login.components/ui/button";
-// import { useRouter } from "next/navigation";
 import * as React from "react";
 import {
   Collapsible,
@@ -14,7 +13,6 @@ import { signOut } from "next-auth/react";
 function DeleteUser() {
   const [isOpen, setIsOpen] = React.useState(false);
 
-  // const router = useRouter();
 
   const onSubmit = async () => {
     //Llamamos a updateUsername para modificar el nombre de usuario

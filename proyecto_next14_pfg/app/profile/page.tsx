@@ -1,8 +1,5 @@
 import DeleteUser from "@/components/profile.components/DeleteUser";
 import PokemonStored from "@/components/profile.components/PokemonStored";
-import UpdateEmail from "@/components/profile.components/UpdateEmail";
-import UpdateName from "@/components/profile.components/UpdateName";
-import UpdateUsername from "@/components/profile.components/UpdateUserame";
 import UserData from "@/components/profile.components/UserData";
 import Username from "@/components/profile.components/Username";
 
@@ -19,11 +16,6 @@ const page = ({ searchParams }: { searchParams?: { page?: string } }) => {
                 <div>
                   <div className="flex flex-col items-center justify-center gap-2 w-auto mt-10 m-2">
                     <UserData />
-                  </div>
-                  <div className="flex gap-8 text-black">
-                    <UpdateUsername />
-                    <UpdateEmail />
-                    <UpdateName />
                   </div>
                   <div className="w-fit mt-5 bg-red-800/20 rounded-2xl border-rose-900 border-2">
                     <DeleteUser />

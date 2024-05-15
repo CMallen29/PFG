@@ -1,6 +1,7 @@
 import { getUserById } from "@/model/user.data";
-import { Button } from "../login.components/ui/button";
-import { PencilSquareIcon } from "@heroicons/react/16/solid";
+import UpdateName from "./UpdateName";
+import UpdateUsername from "./UpdateUserame";
+import UpdateEmail from "./UpdateEmail";
 
 const UserData = async () => {
   //function editField(field: string) {}
@@ -9,28 +10,28 @@ const UserData = async () => {
   return (
     <div
       key={user.id}
-      className="flex flex-col justify-center gap-3 w-full bg-black/30 p-10 rounded-xl text-white font-bold"
+      className="grid grid-cols-3 justify-center gap-3 w-full bg-black/30 p-10 rounded-xl text-white font-bold"
     >
-      <div className="flex justify-between items-center px-5 py-2 bg-white/5 rounded-xl">
-        <h2>Nombre de usuario:</h2>
-        <p>{user.username}</p>
-        <Button className="w-14" variant={"secondary"}>
-          <PencilSquareIcon width={25} />
-        </Button>
+      <div className="justify-between items-center px-5 py-2 bg-white/5 rounded-xl">
+        <div className="flex justify-between p-2">
+          <h2>Nombre de usuario:</h2>
+          <span>{user.username}</span>
+        </div>
+        <UpdateUsername />
       </div>
-      <div className="flex justify-between items-center px-5 py-2 bg-white/5 rounded-xl">
-        <h2>Nombre:</h2>
-        <p>{user.name}</p>
-        <Button className="w-14" variant={"secondary"}>
-          <PencilSquareIcon width={25} />
-        </Button>
+      <div className="justify-between items-center px-5 py-2 bg-white/5 rounded-xl">
+        <div className="flex justify-between p-2">
+          <h2>Nombre:</h2>
+          <p>{user.name}</p>
+        </div>
+        <UpdateName />
       </div>
-      <div className="flex justify-between items-center px-5 py-2 bg-white/5 rounded-xl">
-        <h2>Dirección email:</h2>
-        <p>{user.email}</p>
-        <Button className="w-14" variant={"secondary"}>
-          <PencilSquareIcon width={25} />
-        </Button>
+      <div className="justify-between items-center px-5 py-2 bg-white/5 rounded-xl">
+        <div className="flex justify-between p-2">
+          <h2>Dirección email:</h2>
+          <p>{user.email}</p>
+        </div>
+        <UpdateEmail />
       </div>
     </div>
   );

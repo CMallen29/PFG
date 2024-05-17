@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="min-w-full bg-teal-900 bg-cover bg-top bg-no-repeat">
+      <body className="min-w-full bg-teal-950">
         <header className="absolute flex  max-h-24 w-full">
           <Header />
         </header>

@@ -4,6 +4,7 @@ import {
   filterPokemon,
   getField,
   getPropertiesPokemon,
+  typePokemon,
 } from "@/model/pokemon.fetch";
 
 async function Page({
@@ -12,15 +13,28 @@ async function Page({
   searchParams?: {
     query?: string;
     page?: string;
+    type?: string;
   };
 }) {
   //se usa searchParams porque el componente es de servidor - useSearchParams() es para cliente
   const query = searchParams?.query || "";
   const currentPage = Number(searchParams?.page) || 1;
+  const type = searchParams?.type || "";
   const ITEMS_PER_PAGE = 10;
 
-  const list = (await getField("pokemon")).results;
+  
+  let list;
+  if (type == "") {
+    list = (await getField("pokemon")).results;
+  } else {
+    const listTypes = (await getField("type")).results.filter((item) =>
+      type.includes(item.name)
+    );
+    list = await typePokemon(listTypes[0].url);
+  }
+
   const totalList = await filterPokemon(list, query);
+
   const totalItems = totalList.length;
   const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
   const offset = (currentPage - 1) * ITEMS_PER_PAGE;

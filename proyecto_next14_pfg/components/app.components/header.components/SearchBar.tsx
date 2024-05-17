@@ -1,7 +1,7 @@
 "use client";
 
 import { MagnifyingGlassIcon } from "@heroicons/react/16/solid";
-import { useSearchParams, usePathname, useRouter } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 
 const SearchBar = ({ placeholder }: { placeholder: string }) => {
   //se usa useSearchParams porque el componente es de cliente - searchParams es para servidor
@@ -10,6 +10,10 @@ const SearchBar = ({ placeholder }: { placeholder: string }) => {
   const { replace } = useRouter();
 
   function handleSearch(term: string) {
+    //extrae los parametros de la url
+    //si hay un termino de busqueda, lo añade a la url. Si ya existe uno y es diferente, borra la paginación
+    //si no hay termino de busqueda, borra la query y la paginación
+    //reemplaza la url con los nuevos parametros y borra el valor del input
     const params = new URLSearchParams(searchParams);
     if (term) {
       if (term !== params.get("query")) {

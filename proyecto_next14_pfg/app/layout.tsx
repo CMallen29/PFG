@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Unify",
-  description: "Encuentra tu juego",
+  description: "Encuentra tu Pokémon",
 };
 
 export default function RootLayout({

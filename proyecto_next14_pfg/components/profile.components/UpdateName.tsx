@@ -82,7 +82,7 @@ const UpdateName = () => {
                     Nuevo nombre
                   </FormLabel>
                   <FormControl>
-                    <Input {...field} />
+                    <Input {...field} className="text-black"/>
                   </FormControl>
                   <FormMessage />
                 </FormItem>

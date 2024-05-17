@@ -22,10 +22,6 @@ const config = {
         transparent: "transparent",
         current: "currentColor",
         black: "#000",
-        white: {
-          200: "#FFF9F0",
-          100: "#fff",
-        },
         green: {
           900: "#021115",
           800: "#052B36",
@@ -33,11 +29,12 @@ const config = {
           500: "#1F677D",
         },
         yellow: {
-          700: "#E99000",
-          500: "#F9A620",
-          400: "#F3B248",
-          300: "#EFBE6F",
-          100: "#FFEDD0",
+          800: "#E99000",
+          600: "#F9A620",
+          500: "#F3B248",
+          400: "#EFBE6F",
+          200: "#FFEDD0",
+          100: "#FFF9F0",
         },
         warning: {
           950: "#4c0519",

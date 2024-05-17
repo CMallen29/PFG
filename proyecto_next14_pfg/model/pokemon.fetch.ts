@@ -1,5 +1,6 @@
+import { Pokemons } from "@/types/type.types";
 import { Result, Search } from "../types/search.types";
-import { PokemonSimple } from "../types/pokemon.types";
+import { PokemonSimple } from "@/types/pokemon.types";
 
 const URL = "https://pokeapi.co/api/v2/";
 
@@ -8,6 +9,7 @@ export function getField(
   limit: number = 99999,
   offset: number = 0
 ): Promise<Search> {
+  //limit y offset para obtener todos los resultados. La api solo devuelve 20 resultados
   const url = `${URL}${field}?limit=${limit}&offset=${offset}}`;
   return fetch(url).then((response) => response.json());
 }
@@ -17,6 +19,12 @@ export async function filterPokemon(
   query: string
 ): Promise<Result[]> {
   return list.filter((pokemon) => pokemon.name.includes(query));
+}
+
+export async function typePokemon(list: string): Promise<Result[]> {
+  return fetch(list).then((response) => response.json()
+.then((data) => data.pokemon)
+.then((data) => data.map((item: Pokemons) => item.pokemon)));
 }
 
 export async function getPropertiesPokemon(
@@ -35,7 +43,7 @@ export async function getPropertiesPokemon(
         )
     );
   } catch (error) {
-    console.log("8" + error);
+    console.log(error);
     //pagina notfound
     return [];
   }
@@ -56,4 +64,18 @@ export async function fetchPokemon(
         fetch(urlSingle + pokemon).then((response) => response.json())
       )
   );
+}
+
+//Antiguo filtro ------------------------------------------------------------
+export async function mergeTypePokemon(list: Result[]): Promise<Result[]> {
+  const result = await Promise.all(
+    list.map((type) =>
+      fetch(type.url)
+        .then((response) => response.json())
+        .then((data) => data.pokemon)
+        .then((data) => data.map((item: Pokemons) => item.pokemon))
+    )
+  );
+
+  return result.flat(2);
 }

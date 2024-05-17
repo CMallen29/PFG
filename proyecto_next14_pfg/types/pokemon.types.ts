@@ -1,3 +1,5 @@
+import { Result } from "./search.types";
+
 export interface PokemonSimple {
   base_experience: number;
   height: number;
@@ -6,13 +8,14 @@ export interface PokemonSimple {
   order: number;
   weight: number;
   sprites: Sprites;
+  types: Type[];
 }
 
 export interface Pokemon {
-  abilities: Ability2[];
+  abilities: PokemonAbility[];
   base_experience: number;
   cries: Cries;
-  forms: Ability[];
+  forms: Result[];
   game_indices: Gameindex[];
   height: number;
   held_items: Helditem[];
@@ -23,8 +26,8 @@ export interface Pokemon {
   name: string;
   order: number;
   past_abilities: any[];
-  past_types: any[];
-  species: Ability;
+  past_types: PokemonTypePast[];
+  species: Result;
   sprites: Sprites;
   stats: Stat[];
   types: Type[];
@@ -33,13 +36,13 @@ export interface Pokemon {
 
 export interface Type {
   slot: number;
-  type: Ability;
+  type: Result;
 }
 
 export interface Stat {
   base_stat: number;
   effort: number;
-  stat: Ability;
+  stat: Result;
 }
 
 export interface Sprites {
@@ -190,29 +193,29 @@ export interface Dreamworld {
 }
 
 export interface Move {
-  move: Ability;
+  move: Result;
   version_group_details: Versiongroupdetail[];
 }
 
 export interface Versiongroupdetail {
   level_learned_at: number;
-  move_learn_method: Ability;
-  version_group: Ability;
+  move_learn_method: Result;
+  version_group: Result;
 }
 
 export interface Helditem {
-  item: Ability;
+  item: Result;
   version_details: Versiondetail[];
 }
 
 export interface Versiondetail {
   rarity: number;
-  version: Ability;
+  version: Result;
 }
 
 export interface Gameindex {
   game_index: number;
-  version: Ability;
+  version: Result;
 }
 
 export interface Cries {
@@ -220,13 +223,13 @@ export interface Cries {
   legacy: string;
 }
 
-export interface Ability2 {
-  ability: Ability;
+export interface PokemonAbility {
+  ability: Result;
   is_hidden: boolean;
   slot: number;
 }
 
-export interface Ability {
-  name: string;
-  url: string;
+export interface PokemonTypePast {
+  generation: Result;
+  types: Type[];
 }

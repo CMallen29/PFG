@@ -1,7 +1,6 @@
 "use client";
 import * as React from "react";
 import { Result } from "@/types/search.types";
-import { Toggle } from "./ui/toggle";
 import { useRouter, useSearchParams } from "next/navigation";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
@@ -20,6 +19,7 @@ function ToggleType({ data }: { data: Result[] }) {
       console.log(value + "on");
       params.set("type", value);
     }
+    params.delete("page");
     replace(`${pathname}?${params.toString()}`);
   }
 

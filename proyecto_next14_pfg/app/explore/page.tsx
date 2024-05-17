@@ -4,10 +4,8 @@ import {
   filterPokemon,
   getField,
   getPropertiesPokemon,
-  mergeTypePokemon,
   typePokemon,
 } from "@/model/pokemon.fetch";
-import { Result } from "@/types/search.types";
 
 async function Page({
   searchParams,

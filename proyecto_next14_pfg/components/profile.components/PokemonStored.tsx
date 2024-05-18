@@ -1,6 +1,6 @@
 import { getUserById } from "@/model/user.data";
 import CardPokemon from "../explore.components/CardPokemon";
-import { fetchPokemon } from "../../model/pokemon.fetch";
+import { fetchPokemonUser } from "../../model/pokemon.fetch";
 import Pagination from "../explore.components/pagination";
 
 async function PokemonStored({ page }: { page?: string }) {
@@ -15,7 +15,7 @@ async function PokemonStored({ page }: { page?: string }) {
   const offset = (currentPage - 1) * ITEMS_PER_PAGE;
 
   //fetch array de pokemons y paginacion
-  const dataPokemon = fetchPokemon(pokemons, offset, ITEMS_PER_PAGE);
+  const dataPokemon = fetchPokemonUser(pokemons, offset, ITEMS_PER_PAGE);
  
 
   return (

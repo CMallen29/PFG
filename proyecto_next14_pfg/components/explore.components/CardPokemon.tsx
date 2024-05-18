@@ -1,5 +1,6 @@
 import { PokemonSimple } from "@/types/pokemon.types";
 import React from "react";
+import PokemonInfo from "../pokemonInfo.components/PokemonInfo";
 
 async function CardPokemon({
   dataPokemon,
@@ -15,19 +16,23 @@ async function CardPokemon({
       )}
       {(await dataPokemon).map((pokemon) => {
         return (
-          <div key={pokemon.id} className="bg-teal-600 p-4 rounded w-fit ">
-            <p>{pokemon.id}</p>
-            <p>{pokemon.name}</p>
-            <img
-              src={pokemon.sprites.other["official-artwork"].front_default}
-              alt=""
-              width="150"
-              height="150"
-            />
-            {pokemon.types.map((value) => (
-              <span key={value.type.name} className="p-2">{value.type.name}</span>
-            ))}
-          </div>
+          <PokemonInfo name={pokemon.name}>
+            <div key={pokemon.id} className="bg-teal-600 p-4 rounded w-fit ">
+              <p>{pokemon.id}</p>
+              <p>{pokemon.name}</p>
+              <img
+                src={pokemon.sprites.other["official-artwork"].front_default}
+                alt=""
+                width="150"
+                height="150"
+              />
+              {pokemon.types.map((value) => (
+                <span key={value.type.name} className="p-2">
+                  {value.type.name}
+                </span>
+              ))}
+            </div>
+          </PokemonInfo>
         );
       })}
     </div>

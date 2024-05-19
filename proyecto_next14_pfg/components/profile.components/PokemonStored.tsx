@@ -19,10 +19,10 @@ async function PokemonStored({ page }: { page?: string }) {
  
 
   return (
-    <div className=" bg-teal-900 min-w-fit w-full min-h-fit text-white my-10 ">
+    <div className=" bg-green-600 min-w-fit w-full min-h-fit text-white my-10 rounded-xl">
       <div>
-        <h1 className="text-2xl font-bold  mx-2 p-2">Mis pokemons</h1>
-        <div className="grid place-items-center gap-3 bg-teal-950 p-4">
+        <h1 className="text-2xl font-bold mx-2 p-2">Mis pokemons</h1>
+        <div className="grid place-items-center gap-3 bg-green-800 p-4 rounded-b-xl">
           <div>
             <CardPokemon dataPokemon={dataPokemon} />
           </div>

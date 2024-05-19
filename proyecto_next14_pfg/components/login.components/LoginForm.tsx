@@ -62,7 +62,7 @@ const loginForm = () => {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel className="text-white font-bold">Email</FormLabel>
               <FormControl>
                 <Input placeholder="email@ejemplo.com" {...field} />
               </FormControl>
@@ -75,7 +75,7 @@ const loginForm = () => {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Contraseña</FormLabel>
+              <FormLabel className="text-white font-bold">Contraseña</FormLabel>
               <FormControl>
                 <Input
                   type="password"
@@ -87,12 +87,12 @@ const loginForm = () => {
             </FormItem>
           )}
         />
-        <Button className="w-full" type="submit">
+        <Button className="w-full" type="submit" variant={"unify"}>
           Iniciar Sesión
         </Button>
         <div className="mx-auto my-4">
           <hr />
-          <Button className="w-full p-3 my-4">
+          <Button className="w-full p-3 my-4" variant={"unifylight"}>
             <Link href="/register">Registrarse</Link>
           </Button>
         </div>

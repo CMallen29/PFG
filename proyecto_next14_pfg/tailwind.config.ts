@@ -23,6 +23,7 @@ const config = {
         current: "currentColor",
         black: "#000",
         green: {
+          950: "#010A0C",
           900: "#021115",
           800: "#052B36",
           600: "#084C61",

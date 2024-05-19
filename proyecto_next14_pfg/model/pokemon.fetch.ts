@@ -49,7 +49,7 @@ export async function getPropertiesPokemon(
   }
 }
 
-export async function fetchPokemon(
+export async function fetchPokemonUser(
   pokemons: number[],
   offset: number,
   ITEMS_PER_PAGE: number

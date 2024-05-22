@@ -17,17 +17,21 @@ async function CardPokemon({
       {(await dataPokemon).map((pokemon) => {
         return (
           <PokemonInfo name={pokemon.name}>
-            <div key={pokemon.id} className="bg-teal-600 p-4 rounded w-fit ">
-              <p>{pokemon.id}</p>
-              <p>{pokemon.name}</p>
+            <div key={pokemon.id} className="bg-greenUnify-500 p-4 rounded-xl w-fit ">
+              <div className="bg-gradient-to-b from-yellowUnify-800 to-100%">
+              <p className="capitalize">{pokemon.name}</p>
+              <p>ID: {pokemon.id}</p>
+              </div>
+             
               <img
                 src={pokemon.sprites.other["official-artwork"].front_default}
                 alt=""
                 width="150"
                 height="150"
+                className="m-2 drop-shadow-2xl hover:scale-125"
               />
               {pokemon.types.map((value) => (
-                <span key={value.type.name} className="p-2">
+                <span key={value.type.name} className={`bg-filter-${value.type.name} p-2 m-1 rounded-xl capitalize `}>
                   {value.type.name}
                 </span>
               ))}

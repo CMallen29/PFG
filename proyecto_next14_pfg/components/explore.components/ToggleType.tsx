@@ -15,12 +15,26 @@ function ToggleType({ data }: { data: Result[] }) {
     const params = new URLSearchParams(searchParams);
     if (value === "clear") {
       params.delete("type");
-    } else{
+    } else {
       console.log(value + "on");
       params.set("type", value);
     }
     params.delete("page");
     replace(`${pathname}?${params.toString()}`);
+  }
+
+  function typeToggle(type: string) {
+    if (type !== "shadow" && type !== "unknown" && type !== "stellar") {
+      return (
+        <ToggleGroupItem
+          value={type}
+          key={type}
+          className={`border-filter-${type}  border-2 flex items-center m-1  justify-center rounded-xl capitalize`}
+        >
+          {type}
+        </ToggleGroupItem>
+      );
+    }
   }
 
   return (
@@ -31,7 +45,7 @@ function ToggleType({ data }: { data: Result[] }) {
           value={value}
           className="flex flex-wrap justify-center"
           onValueChange={(value) => {
-            if (value ) {
+            if (value) {
               setValue(value);
               handleFilter(value);
             }
@@ -40,22 +54,14 @@ function ToggleType({ data }: { data: Result[] }) {
           <ToggleGroupItem
             value="clear"
             key="clear"
-            className="flex items-center m-1  justify-center rounded"
+            className="border-white  border-2 flex items-center m-1  justify-center rounded-xl capitalize"
           >
             Limpiar
           </ToggleGroupItem>
-          {data.map((type) => (
-            <ToggleGroupItem
-              value={type.name}
-              key={type.name}
-              className="flex items-center m-1  justify-center rounded"
-            >
-              {type.name}
-            </ToggleGroupItem>
-          ))}
+
+          {data.map((type) => typeToggle(type.name))}
         </ToggleGroup>
       </div>
-      <div></div>
     </div>
   );
 }

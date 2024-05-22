@@ -20,8 +20,8 @@ const buttonVariants = cva(
         ghost:
           "hover:bg-slate-100 hover:text-slate-900 dark:hover:bg-slate-800 dark:hover:text-slate-50",
         link: "text-slate-900 underline-offset-4 hover:underline dark:text-slate-50",
-        unify: "bg-yellow-800 text-green-800 hover:bg-yellow-600 mr-2",
-        unifylight: "bg-yellow-200 text-green-800 hover:bg-yellow-600 mr-2",
+        unify: "bg-yellowUnify-800 text-greenUnify-800 hover:bg-yellowUnify-600 mr-2",
+        unifylight: "bg-yellowUnify-200 text-greenUnify-800 hover:bg-yellowUnify-600 mr-2",
         unifyOut:
           "bg-rose-800 text-white hover:bg-rose-700 hover:shadow-lg  hover:shadow-rose-900 transition-shadow duration-150 ease-in-out ",
       },

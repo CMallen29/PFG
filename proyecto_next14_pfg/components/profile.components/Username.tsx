@@ -25,7 +25,7 @@ const Username = async () => {
       </div>
       <div className="self-end col-span-2 py-10 ">
         <h1 className="text-3xl font-bold text-white ">{user.username}</h1>
-        <div className="my-1 rounded-2xl h-3 w-full bg-gradient-to-r from-yellow-600 ..." />
+        <div className="my-1 rounded-2xl h-3 w-full bg-gradient-to-r from-yellowUnify-600 ..." />
       </div>
     </div>
   );

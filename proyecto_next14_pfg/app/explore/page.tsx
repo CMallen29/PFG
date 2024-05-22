@@ -42,7 +42,7 @@ async function Page({
   const dataPokemon = getPropertiesPokemon(totalList, ITEMS_PER_PAGE, offset);
 
   return (
-    <div>
+    <div className="bg-greenUnify-900/80 rounded-xl text-white">
       page
       <CardPokemon dataPokemon={dataPokemon} />
       <Pagination totalPages={totalPages} />

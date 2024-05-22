@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="min-w-full bg-[url('/image/bgWide.jpg')] bg-no-repeat bg-contain bg-top bg-green-800 flex flex-col min-h-screen">
+      <body className="min-w-full bg-[url('/image/bgWide.jpg')] bg-no-repeat bg-contain bg-top bg-greenUnify-800 flex flex-col min-h-screen">
         <header className="absolute flex max-h-24 w-full">
           <Header />
         </header>

@@ -22,7 +22,7 @@ export default function RootLayout({
         <header className="absolute flex max-h-24 w-full">
           <Header />
         </header>
-        <main className="flex-grow pt-40">{children}</main>
+        <main className="flex-grow pt-40 my-32">{children}</main>
         <footer className="mt-auto">
           <Footer />
         </footer>

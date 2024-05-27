@@ -22,12 +22,19 @@ async function CardPokemon({
               className="bg-greenUnify-500 rounded-xl w-48 grid justify-items-center  "
             >
               <div className="flex justify-between bg-yellowUnify-800 text-greenUnify-800 border-b-4 border-greenUnify-900/90 rounded-t-xl p-4 w-full text-xl">
-                <p className="capitalize">{pokemon.name}</p>
+                <p className="capitalize">
+                  {pokemon.name.replaceAll("-", " ")}
+                </p>
                 <p className="">{pokemon.id}</p>
               </div>
 
               <img
-                src={pokemon.sprites.other["official-artwork"].front_default}
+                src={
+                  pokemon.sprites.other["official-artwork"].front_default ===
+                  null
+                    ? "/pokemon/pokeball.png"
+                    : pokemon.sprites.other["official-artwork"].front_default
+                }
                 alt=""
                 width="170"
                 height="170"
@@ -39,8 +46,9 @@ async function CardPokemon({
                     key={value.type.name}
                     className={`bg-filter-${value.type.name} p-2 m-1 rounded-xl capitalize text-center w-full border-greenUnify-900/90 border-2`}
                   >
-                    
-                    <span className="drop-shadow-[2px_2px_rgba(0,0,0)]">{value.type.name}</span>
+                    <span className="drop-shadow-[2px_2px_rgba(0,0,0)]">
+                      {value.type.name}
+                    </span>
                   </div>
                 ))}
               </div>

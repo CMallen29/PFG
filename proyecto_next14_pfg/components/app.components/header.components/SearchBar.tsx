@@ -39,7 +39,7 @@ const SearchBar = ({ placeholder }: { placeholder: string }) => {
         placeholder={placeholder}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
-            handleSearch(e.currentTarget.value);
+            handleSearch(e.currentTarget.value.toLowerCase());
           }
         }}
         defaultValue={searchParams.get("query")?.toString()}

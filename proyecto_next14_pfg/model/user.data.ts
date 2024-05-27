@@ -7,7 +7,7 @@ async function getUserById() {
   const session = await getServerSession(authOptions);
 
   //Obtenemos los datos del usuario segun su uuid
-  const uuid = session?.user.username;
+  const uuid = session?.user.uuid;
 
   try {
     const user = await db.users.findUnique({

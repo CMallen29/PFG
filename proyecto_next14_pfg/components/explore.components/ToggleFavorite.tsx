@@ -5,8 +5,10 @@ import { StarIcon } from "@heroicons/react/16/solid";
 import { useSession } from "next-auth/react";
 
 export function ToggleFavorite({ id }: { id: number }) {
-  const { data: session} = useSession();
-console.log(session?.user.favorite);
+  const { data: session } = useSession();
+  console.log(id);
+  
+  console.log(session?.user.favorite);
 
   function handleFavorite() {
     if (session?.user.favorite) {
@@ -20,14 +22,12 @@ console.log(session?.user.favorite);
 
   return (
     <Toggle
-      aria-label="Toggle italic"
+      value={id}
+      aria-label="Toggle"
       defaultPressed={session?.user.favorite.includes(id)}
-      onPressedChange={(pressed) => {
-        if (pressed) {
-          handleFavorite();
-          console.log(session?.user.favorite);
-          
-        }
+      onPressedChange={() => {
+        handleFavorite();
+        console.log(session?.user.favorite);
       }}
     >
       <StarIcon className="w-6 h-6" />

@@ -1,20 +1,12 @@
-
+"use client";
 
 import { Toggle } from "@/components/ui/toggle";
-import { authOptions } from "@/lib/auth";
 import { StarIcon } from "@heroicons/react/16/solid";
-import { getServerSession } from "next-auth";
+import { useSession } from "next-auth/react";
 
-export async function ToggleFavorite({ id }: { id: number }) {
-  const session = await getServerSession(authOptions);
-  console.log(session?.user.favorite);
-
-  function defaultPressedUser() {
-    if (session?.user.favorite) {
-      return session?.user.favorite.includes(id);
-    }
-    return false;
-  }
+export function ToggleFavorite({ id }: { id: number }) {
+  const { data: session} = useSession();
+console.log(session?.user.favorite);
 
   function handleFavorite() {
     if (session?.user.favorite) {
@@ -24,11 +16,20 @@ export async function ToggleFavorite({ id }: { id: number }) {
         session?.user.favorite.push(id);
       }
     }
-  
   }
 
   return (
-    <Toggle aria-label="Toggle italic" defaultPressed={defaultPressedUser()}>
+    <Toggle
+      aria-label="Toggle italic"
+      defaultPressed={session?.user.favorite.includes(id)}
+      onPressedChange={(pressed) => {
+        if (pressed) {
+          handleFavorite();
+          console.log(session?.user.favorite);
+          
+        }
+      }}
+    >
       <StarIcon className="w-6 h-6" />
     </Toggle>
   );

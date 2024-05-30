@@ -1,3 +1,4 @@
+import AdminInfo from "@/components/profile.components/AdminInfo";
 import DeleteUser from "@/components/profile.components/DeleteUser";
 import PokemonStored from "@/components/profile.components/PokemonStored";
 import UserData from "@/components/profile.components/UserData";
@@ -25,6 +26,7 @@ const page = ({ searchParams }: { searchParams?: { page?: string } }) => {
             </section>
           </div>
           <PokemonStored page={searchParams?.page} />
+          <AdminInfo />
         </div>
       </div>
     </div>

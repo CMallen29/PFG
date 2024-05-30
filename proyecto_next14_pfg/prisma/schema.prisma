@@ -36,5 +36,7 @@ model users {
   register_date DateTime       @default(now()) @db.Timestamp(6)
   save_pokemon  Int[]
   avatar_path   String?        @default("user.webp")
+  last_visit    DateTime       @default(now()) @db.Timestamptz(6)
+  admin         Boolean        @default(false)
   change_users  change_users[]
 }

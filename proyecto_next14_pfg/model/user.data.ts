@@ -27,4 +27,35 @@ async function getUserById() {
   }
 }
 
-export { getUserById };
+async function deleteUsers() {
+  try {
+    const deleteData = await db.delete_users.findMany();
+
+    if (!deleteData) {
+      throw new Error("Data not found.");
+    }
+
+    return deleteData;
+  } catch (error) {
+    console.error("Failed to fetch user:", error);
+    throw new Error("Failed to fetch user.");
+  }
+}
+
+
+async function changeUsers() {
+  try {
+    const changeData = await db.change_users.findMany();
+
+    if (!changeData) {
+      throw new Error("Data not found.");
+    }
+
+    return changeData;
+  } catch (error) {
+    console.error("Failed to fetch user:", error);
+    throw new Error("Failed to fetch user.");
+  }
+}
+
+export { getUserById, deleteUsers, changeUsers };

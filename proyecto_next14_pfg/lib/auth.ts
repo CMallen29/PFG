@@ -62,11 +62,8 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token, user}) {
-
+    async jwt({ token, user }) {
       if (user) {
-        console.log("sdsadadsa");
-        
         return {
           ...token,
           uuid: user.id,
@@ -76,8 +73,6 @@ export const authOptions: NextAuthOptions = {
       return token;
     },
     async session({ session, token }) {
-      console.log("sessionAUTH", session);
-
       return {
         ...session,
         user: {

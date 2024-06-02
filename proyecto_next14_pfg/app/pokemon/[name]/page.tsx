@@ -1,7 +1,9 @@
+import ProgresBar from "@/components/pokemonInfo.components/ProgresBar";
 import { getField } from "@/model/pokemon.fetch";
 import { EvolutionChain } from "@/types/evolution-chain.types";
 import { PokemonSpecies } from "@/types/pokemon-species.types";
 import { Pokemon } from "@/types/pokemon.types";
+import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/outline";
 import React from "react";
 
 async function page({ params }: { params: { name: string } }) {
@@ -19,9 +21,7 @@ async function page({ params }: { params: { name: string } }) {
     dataPokemonSpecies.evolution_chain.url
   ).then((data) => data)) as EvolutionChain;
 
-console.log(dataEvolution.chain.species.name);
-
-
+  console.log(dataEvolution.chain.species.name);
 
   function getGenericData(url: string) {
     return fetch(url).then((response) => response.json());
@@ -51,125 +51,124 @@ console.log(dataEvolution.chain.species.name);
             <p>{dataPokemon.id}</p>
           </div>
           <div className="my-1 rounded-2xl h-3 w-full bg-gradient-to-r from-yellowUnify-600 ..." />
-          <div className="text-lg font-normal pt-7 text-justify">
-            <p>Base Experience: {dataPokemon.base_experience}</p>
-            <p>Height: {dataPokemon.height}</p>
-            <p>Weight: {dataPokemon.weight}</p>
+          <div className="flex justify-between items-center text-lg font-normal">
+            <div></div>
+            <div className="pl-10 pt-10 w-3/5">
+              {dataPokemonSpecies.flavor_text_entries.find(
+                (item) => item.language.name === "es"
+              )?.flavor_text ??
+                "Aún no se ha investigado lo suficiente sobre este Pokémon."}
+            </div>
           </div>
         </div>
       </div>
 
       <div className="flex flex-row w-4/5 gap-10">
-        <div className=" bg-greenUnify-900/90 p-4 rounded-xl col-span-2 w-3/4 mt-10">
+        <div className=" bg-greenUnify-900/90 p-10 rounded-xl col-span-2 w-3/4 mt-10">
+          <ProgresBar dataPokemon={dataPokemon} />
+        </div>
+        <div className=" bg-greenUnify-900/90 p-4 rounded-xl w-full mt-10 text-lg">
+          CARACTERISTICAS----------------------------------------
+          <div></div>
+          <div className="pt-7 grid grid-cols-2 gap-2">
+            <p>Generación:</p>
+            <p className="capitalize">
+              {dataPokemonSpecies.generation.name.replaceAll("-", " ")}
+            </p>
+            <p>Experiencia:</p>
+            <p> {dataPokemon.base_experience}</p>
+            <p>Altura: </p>
+            <p>{dataPokemon.height}</p>
+            <p>Peso: </p>
+            <p>{dataPokemon.weight}</p>
+            <p>Ratio captura</p>
+            <p>{dataPokemonSpecies.capture_rate}</p>
+          </div>
+          <div className="flex flex-row gap-2">
+            <p>{dataEvolution.chain.species.name.replaceAll("-", " ")}</p>
+            <p>
+              {dataEvolution.chain.evolves_to.map((item) =>
+                item.species.name.replaceAll("-", " ")
+              )}
+            </p>
+            <p>
+              {dataEvolution.chain.evolves_to.map((item) =>
+                item.evolves_to.map((item) =>
+                  item.species.name.replaceAll("-", " ")
+                )
+              )}
+            </p>
+          </div>
+        </div>
+      </div>
 
-        <div>
-            {dataPokemon.stats.map((item) => (
-              <div key={item.stat.name}>
-                <p className="uppercase text-white">
-                  {item.stat.name.replaceAll("-", " ")}{" "}
-                </p>
-                <div className="w-full bg-gray-200 rounded-full dark:bg-gray-700">
-                  <div
-                    className="bg-blue-600 text-xs font-medium text-blue-100 text-center p-2 leading-none rounded-full "
-                    style={{ width: `${item.base_stat*100/255}%` }}
-                  >
-                    {item.base_stat}
-                  </div>
-                </div>
+      <div className="flex flex-row w-4/5 gap-10">
+        <div className=" bg-greenUnify-900/90 p-10 rounded-xl col-span-2 w-3/4 mt-10">
+          <div>
+            CRIES
+            <audio src={dataPokemon.cries.latest} controls>
+              aqui
+            </audio>
+          </div>
+        </div>
+        <div className=" bg-greenUnify-900/90 p-10 rounded-xl col-span-2 w-3/4 mt-10">
+          <div className="flex flex-col">
+            {dataPokemon.types.map((type) => (
+              <div
+                key={type.slot}
+                className={`bg-filter-${type.type.name} p-2 m-1 rounded-xl capitalize text-center w-full border-greenUnify-900/90 border-2`}
+              >
+                <span className="drop-shadow-[2px_2px_rgba(0,0,0)]">
+                  {type.type.name}
+                </span>
               </div>
             ))}
           </div>
+        </div>
+        <div className=" bg-greenUnify-900/90 p-10 rounded-xl col-span-2 w-3/4 mt-10">
+          <div className="px-10 grid grid-cols-1 gap-4">
+            <p className="flex justify-between">
+              LEGENDARIO:{" "}
+              {dataPokemonSpecies.is_legendary ? (
+                <CheckCircleIcon width={"30px"} />
+              ) : (
+                <XCircleIcon width={"30px"} />
+              )}
+            </p>
+            <p className="flex justify-between">
+              MITICO:{" "}
+              {dataPokemonSpecies.is_mythical ? (
+                <CheckCircleIcon width={"30px"} />
+              ) : (
+                <XCircleIcon width={"30px"} />
+              )}
+            </p>
+          </div>
+        </div>
+      </div>
 
-
+      <div className=" bg-greenUnify-600 rounded-xl w-4/5 text-white mt-10">
+        <h1 className="justify-center items-center p-2">Hola</h1>
+        <div className="grid grid-cols-4 items-center bg-greenUnify-900/90 p-4 w-full rounded-b-xl mt-10">
+          <div>
+            <img
+              src={getImagePokemon(
+                dataPokemon.sprites.other["official-artwork"].front_shiny
+              )}
+              alt=""
+              width="200"
+              height="200"
+            />
+          </div>
 
           <div>
-            {dataPokemon.stats.map((item) => (
-              <div
-                key={item.stat.name}
-                className="flex flex-row items-center justify-between px-10 py-2 m-4 rounded-full bg-gradient-to-r from-greenUnify-500 text-greenUnify-800 font-semibold border-greenUnify-500 border-4"
-              >
-                <p className="uppercase text-white">
-                  {item.stat.name.replaceAll("-", " ")}{" "}
-                </p>
-                <p className="text-yellowUnify-600">{item.base_stat}</p>
-                
-                
-              </div>
-
-              
-            ))}
+            <p>SPRITES</p>
+            <img src={dataPokemon.sprites.front_default} alt="" />
+          </div>
+          <div>
+            <img src={dataPokemon.sprites.front_shiny} alt="" />
           </div>
         </div>
-        <div className=" bg-greenUnify-900/90 p-4 rounded-xl w-full mt-10">
-          {dataPokemonSpecies.flavor_text_entries.find(
-            (item) => item.language.name === "es"
-          )?.flavor_text ??
-            "Aún no se ha investigado lo suficiente sobre este Pokémon."}
-        </div>
-      </div>
-
-      <div>
-        DATA GENERAL
-        <img
-          src={getImagePokemon(
-            dataPokemon.sprites.other["official-artwork"].front_shiny
-          )}
-          alt=""
-          width="200"
-          height="200"
-        />
-        <div>
-          Tipos:
-          {dataPokemon.types.map((type) => (
-            <p key={type.slot}>
-              Tipo {type.slot} : {type.type.name}
-            </p>
-          ))}
-        </div>
-      </div>
-
-      <div>
-        EVOLUCIONES
-        
-        <p>{dataEvolution.chain.species.name.replaceAll("-", " ")}</p>
-        <p>
-          {dataEvolution.chain.evolves_to.map((item) =>
-            item.species.name.replaceAll("-", " ")
-          )}
-        </p>
-        <p>
-          {dataEvolution.chain.evolves_to.map((item) =>
-            item.evolves_to.map((item) =>
-              item.species.name.replaceAll("-", " ")
-            )
-          )}
-        </p>
-      </div>
-      <div>
-        RATIO CAPTURA
-        <p>{dataPokemonSpecies.capture_rate}</p>
-      </div>
-      <div>
-        CRIES
-        <audio src={dataPokemon.cries.latest} controls>
-          aqui
-        </audio>
-      </div>
-      <div>
-        LEGENDARIO/MITICO
-        <p>LEGENDARIO: {dataPokemonSpecies.is_legendary ? "SI" : "NO"}</p>
-        <p>MITICO: {dataPokemonSpecies.is_mythical ? "SI" : "NO"}</p>
-      </div>
-      <div>
-        <p>SPRITES</p>
-        <img src={dataPokemon.sprites.front_default} alt="" />
-        <img src={dataPokemon.sprites.front_shiny} alt="" />
-      </div>
-      <div>
-        <p>GENERATION</p>
-        <p className="uppercase">
-          {dataPokemonSpecies.generation.name.replaceAll("-", " ")}
-        </p>
       </div>
     </div>
   );

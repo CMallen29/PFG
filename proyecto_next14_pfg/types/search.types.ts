@@ -1,7 +1,9 @@
+import { getNextInternalQuery } from "next/dist/server/request-meta";
+
 export interface Search {
   count: number;
   next: string;
-  previous: null;
+  previous: string;
   results: Result[];
 }
 

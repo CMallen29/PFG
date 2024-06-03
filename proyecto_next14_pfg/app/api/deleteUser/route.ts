@@ -6,19 +6,16 @@ import { getUserById } from "../../../model/user.data";
 
 // esquema para la validación de los datos
 
-
 export async function POST(request: Request) {
   const user = await getUserById();
   const uuid = user.id;
 
   try {
-    
     //Guardar los datos en la base de datos
     const deleteUser = await db.users.delete({
       where: {
         id: uuid,
       },
-     
     });
     return NextResponse.json({
       user: deleteUser,

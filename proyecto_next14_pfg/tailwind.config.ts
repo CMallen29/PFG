@@ -8,6 +8,11 @@ const config = {
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
   ],
+  safelist: [
+    {
+      pattern: /(border|bg)-filter-*/
+    }
+  ],
   prefix: "",
   theme: {
     container: {
@@ -22,13 +27,14 @@ const config = {
         transparent: "transparent",
         current: "currentColor",
         black: "#000",
-        green: {
+        greenUnify: {
+          950: "#010A0C",
           900: "#021115",
           800: "#052B36",
           600: "#084C61",
           500: "#1F677D",
         },
-        yellow: {
+        yellowUnify: {
           800: "#E99000",
           600: "#F9A620",
           500: "#F3B248",
@@ -36,7 +42,7 @@ const config = {
           200: "#FFEDD0",
           100: "#FFF9F0",
         },
-        warning: {
+        warningUnify: {
           950: "#4c0519",
           900: "#881337",
           800: "#9f1239",
@@ -46,9 +52,10 @@ const config = {
         filter: {
           steel: "#60A2B9",
           water: "#2481EF",
-          bug: "#2481EF",
-          dragon: "#2481EF",
-          electric: "#2481EF",
+          bug: "#92A212",
+          dragon: "#4F60E2",
+          electric: "#FAC000",
+          grass: "#3DA224",
           ghost: "#713F71",
           fire: "#E72324",
           fairy: "#EF71EF",
@@ -62,9 +69,6 @@ const config = {
           ground: "#92501B",
           poison: "#923FCC",
           flying: "#82BAEF",
-          stellar: "#3B35BB",
-          unknown: "#E7E7E7",
-          shadow: "#616161",
         },
       },
       backgroundImage: {

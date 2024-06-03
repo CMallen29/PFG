@@ -36,4 +36,3 @@ export interface TypeRelations {
   no_damage_from: Result[];
   no_damage_to: Result[];
 }
-

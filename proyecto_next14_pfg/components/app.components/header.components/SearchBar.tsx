@@ -30,16 +30,13 @@ const SearchBar = ({ placeholder }: { placeholder: string }) => {
 
   return (
     <div className="relative flex flex-shrink-0 h-10">
-      <label htmlFor="search" className="sr-only">
-        Search
-      </label>
       <input
         name="search"
         className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
         placeholder={placeholder}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
-            handleSearch(e.currentTarget.value);
+            handleSearch(e.currentTarget.value.toLowerCase());
           }
         }}
         defaultValue={searchParams.get("query")?.toString()}

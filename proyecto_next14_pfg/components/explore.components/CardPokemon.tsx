@@ -31,7 +31,7 @@ async function CardPokemon({
                 className="bg-greenUnify-500 rounded-xl w-48 grid justify-items-center  "
               >
                 <div className="flex justify-between bg-yellowUnify-800 text-greenUnify-800 border-b-4 border-greenUnify-900/90 rounded-t-xl p-4 w-full text-xl">
-                  <p className="capitalize">{pokemon.name}</p>
+                  <p className="capitalize">{pokemon.name.replaceAll("-"," ")}</p>
                   <p className="">{pokemon.id}</p>
                 </div>
 

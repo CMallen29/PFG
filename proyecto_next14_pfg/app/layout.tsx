@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/app.components/Header";
 import Footer from "@/components/app.components/Footer";
+import SessionProvider from "@/components/app.components/SessionProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,6 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-w-full bg-[url('/image/bgWide.jpg')] bg-no-repeat bg-contain bg-top bg-greenUnify-800 flex flex-col min-h-screen">
+      <SessionProvider>
         <header className="absolute flex max-h-24 w-full">
           <Header />
         </header>
@@ -26,6 +28,7 @@ export default function RootLayout({
         <footer className="mt-auto">
           <Footer />
         </footer>
+        </SessionProvider>
       </body>
     </html>
   );

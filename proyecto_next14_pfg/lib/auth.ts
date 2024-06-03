@@ -4,7 +4,7 @@ import CredentialsProvider from "next-auth/providers/credentials"; // Import the
 import { db } from "../model/database";
 import { compare } from "bcrypt";
 import { Adapter } from "next-auth/adapters";
-// import 
+// import
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(db) as Adapter,
@@ -18,7 +18,6 @@ export const authOptions: NextAuthOptions = {
 
   providers: [
     CredentialsProvider({
-      // The name to display on the sign in form (e.g. "Sign in with...")
       name: "Iniciar Sesión",
       credentials: {
         email: {
@@ -55,6 +54,7 @@ export const authOptions: NextAuthOptions = {
         // Si todo es correcto, devolvemos el usuario
         return {
           id: existUser.id,
+          favorite: existUser.save_pokemon,
           username: existUser.username,
           email: existUser.email,
         };
@@ -63,22 +63,22 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async jwt({ token, user }) {
-      
-
       if (user) {
         return {
           ...token,
-          username: user.id,
+          uuid: user.id,
+          favorite: user.favorite,
         };
       }
       return token;
     },
-    async session({ session,token }) {
+    async session({ session, token }) {
       return {
         ...session,
         user: {
           ...session.user,
-          username: token.username,
+          uuid: token.uuid,
+          favorite: token.favorite,
         },
       };
     },

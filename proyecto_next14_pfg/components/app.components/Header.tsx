@@ -13,7 +13,12 @@ const Header = async () => {
   return (
     <div className="w-full flex items-center justify-between p-8 ">
       <Link className="hover:drop-shadow-lg" href="/">
-        <Image src={"/image/logo.png"} alt="Logo unify" width={150} height={50} />
+        <Image
+          src={"/image/logo.png"}
+          alt="Logo unify"
+          width={150}
+          height={50}
+        />
       </Link>
       <div className="w-1/3">
         <SearchBar placeholder={"Busca el nombre de un Pokémon..."} />

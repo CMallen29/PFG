@@ -1,6 +1,6 @@
 import { Pokemons } from "@/types/type.types";
 import { Result, Search } from "../types/search.types";
-import { PokemonSimple } from "@/types/pokemon.types";
+import { Pokemon } from "@/types/pokemon.types";
 
 const URL = "https://pokeapi.co/api/v2/";
 
@@ -22,16 +22,19 @@ export async function filterPokemon(
 }
 
 export async function typePokemon(list: string): Promise<Result[]> {
-  return fetch(list).then((response) => response.json()
-.then((data) => data.pokemon)
-.then((data) => data.map((item: Pokemons) => item.pokemon)));
+  return fetch(list).then((response) =>
+    response
+      .json()
+      .then((data) => data.pokemon)
+      .then((data) => data.map((item: Pokemons) => item.pokemon))
+  );
 }
 
 export async function getPropertiesPokemon(
   listURL: Result[],
   ITEMS_PER_PAGE: number,
   offset: number
-): Promise<PokemonSimple[]> {
+): Promise<Pokemon[]> {
   const limit = offset + ITEMS_PER_PAGE;
 
   try {
@@ -53,7 +56,7 @@ export async function fetchPokemonUser(
   pokemons: number[],
   offset: number,
   ITEMS_PER_PAGE: number
-): Promise<PokemonSimple[]> {
+): Promise<Pokemon[]> {
   const limit = offset + ITEMS_PER_PAGE;
   const urlSingle = `${URL}pokemon/`;
 

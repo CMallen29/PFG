@@ -4,9 +4,8 @@ import ToggleType from "./ToggleType";
 async function Sidebar() {
   const data = (await getField("type")).results;
   return (
-    <div >
+    <div>
       <ToggleType data={data} />
-      
     </div>
   );
 }

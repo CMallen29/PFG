@@ -13,7 +13,6 @@ import { signOut } from "next-auth/react";
 function DeleteUser() {
   const [isOpen, setIsOpen] = React.useState(false);
 
-
   const onSubmit = async () => {
     //Llamamos a updateUsername para modificar el nombre de usuario
 

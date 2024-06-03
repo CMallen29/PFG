@@ -16,7 +16,6 @@ async function PokemonStored({ page }: { page?: string }) {
 
   //fetch array de pokemons y paginacion
   const dataPokemon = fetchPokemonUser(pokemons, offset, ITEMS_PER_PAGE);
- 
 
   return (
     <div className=" bg-greenUnify-600 min-w-fit w-full min-h-fit text-white my-10 rounded-xl">

@@ -41,14 +41,12 @@ const loginForm = () => {
       password: values.password,
       redirect: false,
     });
-    // console.log(loginData);
 
     if (loginData?.error) {
       console.log("Error en el login");
       console.log(loginData.error);
       alert("Error en el login, comprueba tus credenciales");
     } else {
-
       router.push("/");
       router.refresh();
     }

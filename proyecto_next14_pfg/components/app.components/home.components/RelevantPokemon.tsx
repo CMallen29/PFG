@@ -2,7 +2,7 @@ import { Pokemon } from "@/types/pokemon.types";
 import { getField } from "@/model/pokemon.fetch";
 import { datePokemon } from "@/model/pokemon.date";
 import ProgresBar from "@/components/pokemonInfo.components/ProgresBar";
-import PokemonInfo from "@/components/pokemonInfo.components/PokemonInfo";
+import Link from "next/link";
 
 async function RelevantPokemon() {
   const fieldPokemon = "pokemon/";
@@ -20,8 +20,11 @@ async function RelevantPokemon() {
   return (
     <div className="flex flex-col items-center text-white">
       <div className=" bg-greenUnify-600 rounded-xl w-4/5 mt-10">
-        <h2 className="text-2xl font-bold justify-center mx-2 p-2">POKÉMON DEL DÍA</h2>
-        <PokemonInfo name={dataPokemon.name}>
+        <h2 className="text-2xl font-bold justify-center mx-2 p-2">
+          POKÉMON DEL DÍA
+        </h2>
+
+        <Link href={`/pokemon/${dataPokemon.name}`}>
           <div className="grid grid-cols-3 items-center bg-greenUnify-900/90 p-4 w-auto rounded-b-xl">
             <div className="flex flex-col justify-center items-center">
               <img
@@ -46,7 +49,7 @@ async function RelevantPokemon() {
               <ProgresBar dataPokemon={dataPokemon} />
             </div>
           </div>
-        </PokemonInfo>
+        </Link>
       </div>
     </div>
   );

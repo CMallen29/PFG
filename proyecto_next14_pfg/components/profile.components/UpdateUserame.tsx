@@ -85,7 +85,7 @@ const UpdateUsername = () => {
                     Nuevo nombre de usuario
                   </FormLabel>
                   <FormControl>
-                    <Input {...field} className="text-black"/>
+                    <Input {...field} className="text-black" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

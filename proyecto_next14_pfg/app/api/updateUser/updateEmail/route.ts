@@ -7,7 +7,7 @@ import { getUserById } from "../../../../model/user.data";
 
 // esquema para la validación de los datos
 const userSchema = z.object({
-  email:z.string().min(1,'Email obligatorio').email('Email no válido'),
+  email: z.string().min(1, "Email obligatorio").email("Email no válido"),
 });
 
 export async function POST(request: Request) {

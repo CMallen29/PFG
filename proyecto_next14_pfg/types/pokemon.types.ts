@@ -1,16 +1,5 @@
 import { Result } from "./search.types";
 
-export interface PokemonSimple {
-  base_experience: number;
-  height: number;
-  id: number;
-  name: string;
-  order: number;
-  weight: number;
-  sprites: Sprites;
-  types: Type[];
-}
-
 export interface Pokemon {
   abilities: PokemonAbility[];
   base_experience: number;

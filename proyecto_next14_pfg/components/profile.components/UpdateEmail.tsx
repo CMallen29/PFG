@@ -82,7 +82,7 @@ const UpdateEmail = () => {
                     Cambio de email
                   </FormLabel>
                   <FormControl>
-                    <Input {...field} className="text-black"/>
+                    <Input {...field} className="text-black" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

@@ -2,11 +2,13 @@ import { delete_users, change_users } from "@prisma/client";
 
 function Table({ data }: { data: delete_users[] } | { data: change_users[] }) {
   return (
-    <table >
+    <table>
       <thead>
         <tr>
           {Object.keys(data[0]).map((key) => (
-            <th key={key} className="uppercase">{key}</th>
+            <th key={key} className="uppercase">
+              {key}
+            </th>
           ))}
         </tr>
       </thead>

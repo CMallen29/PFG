@@ -16,7 +16,6 @@ import { Input } from "./ui/input";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-
 const formSchema = z
   .object({
     username: z
@@ -48,7 +47,6 @@ const RegisterForm = () => {
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    // console.log(values);
     const response = await fetch("/api/createUser", {
       method: "POST",
       headers: {
@@ -120,7 +118,9 @@ const RegisterForm = () => {
           name="confirmPassword"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-white font-bold">Repite la contraseña</FormLabel>
+              <FormLabel className="text-white font-bold">
+                Repite la contraseña
+              </FormLabel>
               <FormControl>
                 <Input
                   type="password"

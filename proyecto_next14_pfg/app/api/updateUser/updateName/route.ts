@@ -22,7 +22,6 @@ export async function POST(request: Request) {
 
     const { name } = userSchema.parse(body);
 
-
     //Guardar los datos en la base de datos
     const updateName = await db.users.update({
       where: {

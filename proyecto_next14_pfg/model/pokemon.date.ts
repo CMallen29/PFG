@@ -1,4 +1,4 @@
-export function datePokemon(date: string):string {
+export function datePokemon(date: string): string {
   const dateFormat = date.split("/");
   const year = dateFormat[0].split("");
   const month = dateFormat[1].split("");

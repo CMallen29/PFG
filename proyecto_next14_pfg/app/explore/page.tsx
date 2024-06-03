@@ -22,7 +22,6 @@ async function Page({
   const type = searchParams?.type || "";
   const ITEMS_PER_PAGE = 10;
 
-  
   let list;
   if (type == "") {
     list = (await getField("pokemon")).results;
@@ -43,7 +42,6 @@ async function Page({
 
   return (
     <div className="bg-greenUnify-900/80 rounded-xl text-white">
-      page
       <CardPokemon dataPokemon={dataPokemon} />
       <Pagination totalPages={totalPages} />
     </div>

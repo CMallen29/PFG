@@ -1,7 +1,9 @@
 function Footer() {
   return (
     <div className="flex flex-col h-50 bg-greenUnify-900">
-      <div className="flex items-center justify-center p-6 h-10 bg-greenUnify-950 text-yellowUnify-600">Enlaces</div>
+      <div className="flex items-center justify-center p-6 h-10 bg-greenUnify-950 text-yellowUnify-600">
+        Enlaces
+      </div>
       <div className="flex items-center justify-center my-8 text-white">
         <h2>Pie de página logo y mas cosas</h2>
       </div>

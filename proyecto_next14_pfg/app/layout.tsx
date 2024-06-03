@@ -20,14 +20,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-w-full bg-[url('/image/bgWide.jpg')] bg-no-repeat bg-contain bg-top bg-greenUnify-800 flex flex-col min-h-screen">
-      <SessionProvider>
-        <header className="absolute flex max-h-24 w-full">
-          <Header />
-        </header>
-        <main className="flex-grow pt-40 my-32">{children}</main>
-        <footer className="mt-auto">
-          <Footer />
-        </footer>
+        <SessionProvider>
+          <header className="absolute flex max-h-24 w-full">
+            <Header />
+          </header>
+          <main className="flex-grow pt-40 my-32">{children}</main>
+          <footer className="mt-auto">
+            <Footer />
+          </footer>
         </SessionProvider>
       </body>
     </html>

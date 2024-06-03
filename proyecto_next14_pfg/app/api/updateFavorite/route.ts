@@ -5,38 +5,31 @@ import { db } from "../../../model/database";
 import { getUserById } from "../../../model/user.data";
 
 export async function POST(request: Request) {
-  
   const user = await getUserById();
   const uuid = user.id;
   const body = await request.json();
-  body.pokemonID=parseInt(body.pokemonID);
+  body.pokemonID = parseInt(body.pokemonID);
 
-  let updateFavorite:number[];
+  let updateFavorite: number[];
 
-  if(user.save_pokemon.includes(body.pokemonID)){
-    
+  if (user.save_pokemon.includes(body.pokemonID)) {
     //quitamos del array el id del pokemon
-    updateFavorite=user.save_pokemon.filter((id)=>id!==body.pokemonID);
-    // console.log("updateFavorite",updateFavorite);
-    
-  }else{
-  
+    updateFavorite = user.save_pokemon.filter((id) => id !== body.pokemonID);
+  } else {
     user.save_pokemon.push(body.pokemonID);
-    updateFavorite=user.save_pokemon;
-    // console.log("user.save_pokemon PUSHHHH",user.save_pokemon);
+    updateFavorite = user.save_pokemon;
   }
 
   try {
-
     const updatePokemons = await db.users.update({
       where: {
         id: uuid,
       },
       data: {
-      save_pokemon: updateFavorite,
+        save_pokemon: updateFavorite,
       },
     });
-  
+
     return NextResponse.json({
       user: user.save_pokemon,
       message: "Pokemons favoritos actualizados",

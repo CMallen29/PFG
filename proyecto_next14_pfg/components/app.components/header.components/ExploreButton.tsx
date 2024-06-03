@@ -8,8 +8,7 @@ const ExploreButton = () => {
       <Link className="m-2 " href="/explore">
         <Button variant={"unify"}>
           <MagnifyingGlassCircleIcon width={"25"} />
-          &nbsp;&nbsp; 
-          Explorar
+          &nbsp;&nbsp; Explorar
         </Button>
       </Link>
     </>

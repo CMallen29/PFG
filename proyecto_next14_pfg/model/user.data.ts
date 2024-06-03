@@ -42,7 +42,6 @@ async function deleteUsers() {
   }
 }
 
-
 async function changeUsers() {
   try {
     const changeData = await db.change_users.findMany();

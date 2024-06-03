@@ -4,7 +4,7 @@ import { PencilSquareIcon } from "@heroicons/react/16/solid";
 import { getUserById } from "@/model/user.data";
 
 const Username = async () => {
-  //Obtenemos los datos del usuario 
+  //Obtenemos los datos del usuario
   const user = await getUserById();
 
   return (

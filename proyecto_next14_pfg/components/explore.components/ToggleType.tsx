@@ -13,7 +13,7 @@ function ToggleType({ data }: { data: Result[] }) {
 
   function handleFilter(value: string) {
     const params = new URLSearchParams(searchParams);
-    if (value === "clear") {
+    if (value === "all") {
       params.delete("type");
     } else {
       params.set("type", value);
@@ -51,11 +51,11 @@ function ToggleType({ data }: { data: Result[] }) {
           }}
         >
           <ToggleGroupItem
-            value="clear"
-            key="clear"
-            className="border-white  border-2 flex items-center m-1  justify-center rounded-xl capitalize"
+            value="all"
+            key="all"
+            className="border-white  border-2 flex items-center m-2  justify-center rounded-xl capitalize"
           >
-            Limpiar
+            Todos
           </ToggleGroupItem>
 
           {data.map((type) => typeToggle(type.name))}

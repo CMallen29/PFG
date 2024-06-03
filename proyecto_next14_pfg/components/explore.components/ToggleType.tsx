@@ -16,7 +16,6 @@ function ToggleType({ data }: { data: Result[] }) {
     if (value === "clear") {
       params.delete("type");
     } else {
-      console.log(value + "on");
       params.set("type", value);
     }
     params.delete("page");

@@ -13,7 +13,6 @@ async function CardPokemon({
   const sessionFav = await getServerSession(authOptions).then(
     (session) => session?.user.favorite
   );
-  console.log(sessionFav);
 
   return (
     <div className="flex flex-row flex-wrap justify-center items-center gap-12 p-4 font-bold">

@@ -21,8 +21,6 @@ async function page({ params }: { params: { name: string } }) {
     dataPokemonSpecies.evolution_chain.url
   ).then((data) => data)) as EvolutionChain;
 
-  console.log(dataEvolution.chain.species.name);
-
   function getGenericData(url: string) {
     return fetch(url).then((response) => response.json());
   }

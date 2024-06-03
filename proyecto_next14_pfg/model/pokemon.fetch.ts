@@ -14,6 +14,10 @@ export function getField(
   return fetch(url).then((response) => response.json());
 }
 
+export function getGenericData(url: string) {
+  return fetch(url).then((response) => response.json());
+}
+
 export async function filterPokemon(
   list: Result[],
   query: string
@@ -67,6 +71,10 @@ export async function fetchPokemonUser(
         fetch(urlSingle + pokemon).then((response) => response.json())
       )
   );
+}
+
+export function getImagePokemon(sprite: string) {
+  return sprite === null ? "/pokemon/pokeball.png" : sprite;
 }
 
 //Antiguo filtro ------------------------------------------------------------

@@ -1,5 +1,9 @@
 import ProgresBar from "@/components/pokemonInfo.components/ProgresBar";
-import { getField } from "@/model/pokemon.fetch";
+import {
+  getField,
+  getGenericData,
+  getImagePokemon,
+} from "@/model/pokemon.fetch";
 import { EvolutionChain } from "@/types/evolution-chain.types";
 import { PokemonSpecies } from "@/types/pokemon-species.types";
 import { Pokemon } from "@/types/pokemon.types";
@@ -20,14 +24,6 @@ async function page({ params }: { params: { name: string } }) {
   const dataEvolution = (await getGenericData(
     dataPokemonSpecies.evolution_chain.url
   ).then((data) => data)) as EvolutionChain;
-
-  function getGenericData(url: string) {
-    return fetch(url).then((response) => response.json());
-  }
-
-  function getImagePokemon(sprite: string) {
-    return sprite === null ? "/pokemon/pokeball.png" : sprite;
-  }
 
   return (
     <div className="flex flex-col items-center text-white">

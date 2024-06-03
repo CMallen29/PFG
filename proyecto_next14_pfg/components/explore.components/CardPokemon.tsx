@@ -4,6 +4,7 @@ import { ToggleFavorite } from "./ToggleFavorite";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import Link from "next/link";
+import { getImagePokemon } from "@/model/pokemon.fetch";
 
 async function CardPokemon({
   dataPokemon,
@@ -36,7 +37,9 @@ async function CardPokemon({
                 </div>
 
                 <img
-                  src={pokemon.sprites.other["official-artwork"].front_default}
+                  src={getImagePokemon(
+                    pokemon.sprites.other["official-artwork"].front_default
+                  )}
                   alt=""
                   width="170"
                   height="170"

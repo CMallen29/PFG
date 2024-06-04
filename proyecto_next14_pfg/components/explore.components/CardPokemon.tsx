@@ -24,11 +24,10 @@ async function CardPokemon({
       )}
       {(await dataPokemon).map((pokemon) => {
         return (
-          <div>
+          <div key={pokemon.id}>
             <ToggleFavorite id={pokemon.id} sessionFav={sessionFav} />
             <Link href={`/pokemon/${pokemon.name}`}>
               <div
-                key={pokemon.id}
                 className="bg-greenUnify-500 rounded-xl w-48 grid justify-items-center  "
               >
                 <div className="flex justify-between bg-yellowUnify-800 text-greenUnify-800 border-b-4 border-greenUnify-900/90 rounded-t-xl p-4 w-full text-xl">

@@ -21,7 +21,7 @@ CREATE TABLE delete_users (
     username TEXT NOT NULL,
     name TEXT NOT NULL,
     register_date TIMESTAMP NOT NULL,
-    avatar_path TEXT
+    avatar_path TEXT,
     delete_date TIMESTAMP DEFAULT now() NOT NULL,
     FOREIGN KEY (id_user) REFERENCES users(id)
 );
@@ -41,8 +41,8 @@ CREATE TABLE change_users (
 CREATE OR REPLACE FUNCTION before_delete_user()
 RETURNS TRIGGER AS $$
 BEGIN
-    INSERT INTO delete_users (id_user, email, username, name, register_date, avatar_path)
-    VALUES (OLD.id, OLD.email, OLD.username, OLD.name, OLD.register_date, OLD.avatar_path);
+    INSERT INTO delete_users (id_user, email, username, name, register_date, avatar_path, delete_date)
+    VALUES (OLD.id, OLD.email, OLD.username, OLD.name, OLD.register_date, OLD.avatar_path, now());
     RETURN OLD;
 END;
 $$ LANGUAGE plpgsql;
@@ -58,8 +58,8 @@ CREATE OR REPLACE FUNCTION before_update_user()
 RETURNS TRIGGER AS $$
 BEGIN
     IF OLD.username IS DISTINCT FROM NEW.username THEN
-        INSERT INTO change_users (id_user, field_modified, old_value, new_value)
-        VALUES (OLD.id, 'username', OLD.username, NEW.username);
+        INSERT INTO change_users (id_user, field_modified, old_value, new_value, change_date)
+        VALUES (OLD.id, 'username', OLD.username, NEW.username, change_date);
     END IF;
 
     IF OLD.email IS DISTINCT FROM NEW.email THEN
@@ -80,5 +80,5 @@ EXECUTE FUNCTION before_update_user();
 -- Seed de usuarios
 INSERT INTO users (email, username, password, name, save_pokemon, avatar_path)
 VALUES 
-    ('p@p.es,popopopopop,$2b$10$qRxxYKcnBRcoDTIdTUQVjuNdiIy3tAvMLXIrfH5tBrCZgAyBRP/e6,pop,,user.webp'),
-    ('admin@mail.com,admin,$2b$10$xAr3/AmtF7I3.gz59MWtG.J/NI7h7eOtNeMY28vJvBk0R.dohKyOC,admin,,admin.jpg')
+    ('p@p.es', 'popopopopop', '$2b$10$qRxxYKcnBRcoDTIdTUQVjuNdiIy3tAvMLXIrfH5tBrCZgAyBRP/e6', 'pop', NULL, 'user.webp'),
+    ('admin@mail.com', 'admin', '$2b$10$xAr3/AmtF7I3.gz59MWtG.J/NI7h7eOtNeMY28vJvBk0R.dohKyOC', 'admin', NULL, 'admin.jpg');

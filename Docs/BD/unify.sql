@@ -16,12 +16,14 @@ CREATE TABLE users (
 -- Crear la tabla delete_users
 CREATE TABLE delete_users (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id_user UUID NOT NULL,
     email TEXT NOT NULL,
     username TEXT NOT NULL,
-    password TEXT NOT NULL,
     name TEXT NOT NULL,
     register_date TIMESTAMP NOT NULL,
     avatar_path TEXT
+    delete_date TIMESTAMP DEFAULT now() NOT NULL,
+    FOREIGN KEY (id_user) REFERENCES users(id)
 );
 
 -- Crear la tabla change_users
@@ -39,8 +41,8 @@ CREATE TABLE change_users (
 CREATE OR REPLACE FUNCTION before_delete_user()
 RETURNS TRIGGER AS $$
 BEGIN
-    INSERT INTO delete_users (email, username, password, name, register_date, avatar_path)
-    VALUES (OLD.email, OLD.username, OLD.password, OLD.name, OLD.register_date, OLD.avatar_path);
+    INSERT INTO delete_users (id_user, email, username, name, register_date, avatar_path)
+    VALUES (OLD.id, OLD.email, OLD.username, OLD.name, OLD.register_date, OLD.avatar_path);
     RETURN OLD;
 END;
 $$ LANGUAGE plpgsql;

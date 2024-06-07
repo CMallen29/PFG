@@ -19,9 +19,9 @@ const Username = async () => {
             className="h-48 mx-auto object-cover rounded-full w-48 border-4 border-white"
           />
         </div>
-        <Button className="my-1 px-4 rounded-xl" variant={"secondary"}>
+        {/* <Button className="my-1 px-4 rounded-xl" variant={"secondary"}>
           <PencilSquareIcon className="mr-2" width={"25"} /> EDITAR
-        </Button>
+        </Button> */}
       </div>
       <div className="self-end col-span-2 py-10 ">
         <h1 className="text-3xl font-bold text-white ">{user.username}</h1>

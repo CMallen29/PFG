@@ -28,7 +28,7 @@ function ToggleType({ data }: { data: Result[] }) {
         <ToggleGroupItem
           value={type}
           key={type}
-          className={`border-filter-${type}  border-2 flex items-center m-1  justify-center rounded-xl capitalize`}
+          className={`border-filter-${type} border-2 flex items-center m-1 rounded-xl uppercase`}
         >
           {type}
         </ToggleGroupItem>
@@ -42,7 +42,7 @@ function ToggleType({ data }: { data: Result[] }) {
         <ToggleGroup
           type="single"
           value={value}
-          className="flex flex-wrap justify-center"
+          className="grid grid-cols-2"
           onValueChange={(value) => {
             if (value) {
               setValue(value);
@@ -53,7 +53,7 @@ function ToggleType({ data }: { data: Result[] }) {
           <ToggleGroupItem
             value="all"
             key="all"
-            className="border-white  border-2 flex items-center m-2  justify-center rounded-xl capitalize"
+            className="border-white border-2 flex items-center m-1 rounded-xl col-span-2 uppercase"
           >
             Todos
           </ToggleGroupItem>

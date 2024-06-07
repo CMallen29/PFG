@@ -21,10 +21,12 @@ model delete_users {
   id            String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   email         String
   username      String
-  password      String
   name          String
   register_date DateTime @db.Timestamp(6)
   avatar_path   String?
+  id_user       String?  @db.Uuid
+  delete_date   DateTime @default(now()) @db.Timestamp(6)
+  users         users?   @relation(fields: [id_user], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model users {
@@ -35,8 +37,9 @@ model users {
   name          String
   register_date DateTime       @default(now()) @db.Timestamp(6)
   save_pokemon  Int[]
-  avatar_path   String?        @default("user.webp")
+  avatar_path   String?        @default("'user.png'::text")
   last_visit    DateTime       @default(now()) @db.Timestamptz(6)
   admin         Boolean        @default(false)
   change_users  change_users[]
+  delete_users  delete_users[]
 }

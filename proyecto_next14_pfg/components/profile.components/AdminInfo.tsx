@@ -19,11 +19,11 @@ async function AdminInfo() {
             <Table data={deleteData} />
           </div>
         </div>
-        <div className="items-center bg-greenUnify-800 p-4">
+        <div className="items-center bg-greenUnify-800 p-4 rounded-b-xl">
           <h3 className="text-xl font-bold  mx-2 p-2">Change users</h3>
-        </div>
-        <div>
-          <Table data={changeData} />
+          <div>
+            <Table data={changeData} />
+          </div>
         </div>
       </div>
     );

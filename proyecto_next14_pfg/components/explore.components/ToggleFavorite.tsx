@@ -13,7 +13,18 @@ export function ToggleFavorite({
 }) {
   const router = useRouter();
 
+
   async function handleFavorite() {
+
+    console.log("sessionFav", sessionFav);
+    
+
+    if(sessionFav === undefined) {
+      console.log("No hay sesión");
+      
+      router.push("/login");
+      return;
+    }
     const response = await fetch("/api/updateFavorite", {
       method: "POST",
       headers: {
@@ -28,7 +39,7 @@ export function ToggleFavorite({
       router.refresh();
       console.log("Pokemon actualizado correctamente");
     } else {
-      console.error("Error al actualizar pokemon");
+      console.log("Error al actualizar pokemon");
     }
   }
 

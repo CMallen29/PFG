@@ -6,8 +6,8 @@ import Username from "@/components/profile.components/Username";
 
 const page = ({ searchParams }: { searchParams?: { page?: string } }) => {
   return (
-    <div className="flex flex-col items-center">
-      <div className="min-w-fit w-4/5 min-h-fit h-4/6 bg-greenUnify-900/90 rounded-xl">
+    <div className="flex flex-col items-center text-white">
+      <div className="items-center bg-greenUnify-900/90 w-4/5 rounded-xl mt-10 mb-10">
         <Username />
         <div className="flex flex-col items-center justify-center p-10 ">
           <div className=" bg-greenUnify-600 min-w-fit w-full min-h-fit h-full rounded-xl text-white">

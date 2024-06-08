@@ -18,7 +18,7 @@ export async function POST(request: Request) {
       },
     });
     return NextResponse.json({
-      user: deleteUser,
+      user: deleteUser.name,
       message: "Usuario eliminado",
       status: 201,
     });

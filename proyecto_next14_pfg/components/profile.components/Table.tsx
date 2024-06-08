@@ -1,6 +1,9 @@
 import { delete_users, change_users } from "@prisma/client";
 
 function Table({ data }: { data: delete_users[] } | { data: change_users[] }) {
+  if (data.length === 0) {
+    return <p>No data</p>;
+  }
   return (
     <table>
       <thead>

@@ -15,6 +15,7 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 
 const formSchema = z
   .object({
@@ -60,7 +61,19 @@ const RegisterForm = () => {
     });
 
     if (response.ok) {
-      router.push("/login");
+      const loginData = await signIn("credentials", {
+        email: values.email,
+        password: values.password,
+        redirect: false,
+      });
+
+      if (loginData?.error) {
+        console.log("Error en el login");
+        console.log(loginData.error);
+      } else {
+        router.push("/");
+        router.refresh();
+      }
       console.log("Usuario creado");
     } else {
       console.error("Error al crear el usuario");

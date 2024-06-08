@@ -1,6 +1,7 @@
 import { Pokemons } from "@/types/type.types";
 import { Result, Search } from "../types/search.types";
 import { Pokemon } from "@/types/pokemon.types";
+import { notFound } from "next/navigation";
 
 const URL = "https://pokeapi.co/api/v2/";
 
@@ -11,7 +12,15 @@ export function getField(
 ): Promise<Search> {
   //limit y offset para obtener todos los resultados. La api solo devuelve 20 resultados
   const url = `${URL}${field}?limit=${limit}&offset=${offset}}`;
-  return fetch(url).then((response) => response.json());
+  return fetch(url).then((response) =>
+    response.ok ? response.json() : notFound()
+  );
+}
+
+export function getGenericData(url: string) {
+  return fetch(url).then((response) =>
+    response.ok ? response.json() : notFound()
+  );
 }
 
 export async function filterPokemon(
@@ -47,7 +56,7 @@ export async function getPropertiesPokemon(
     );
   } catch (error) {
     console.log(error);
-    //pagina notfound
+    notFound();
     return [];
   }
 }
@@ -67,6 +76,10 @@ export async function fetchPokemonUser(
         fetch(urlSingle + pokemon).then((response) => response.json())
       )
   );
+}
+
+export function getImagePokemon(sprite: string) {
+  return sprite === null ? "/pokemon/pokeball.png" : sprite;
 }
 
 //Antiguo filtro ------------------------------------------------------------

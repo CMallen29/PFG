@@ -13,7 +13,7 @@ function ToggleType({ data }: { data: Result[] }) {
 
   function handleFilter(value: string) {
     const params = new URLSearchParams(searchParams);
-    if (value === "clear") {
+    if (value === "all") {
       params.delete("type");
     } else {
       params.set("type", value);
@@ -28,7 +28,7 @@ function ToggleType({ data }: { data: Result[] }) {
         <ToggleGroupItem
           value={type}
           key={type}
-          className={`border-filter-${type}  border-2 flex items-center m-1  justify-center rounded-xl capitalize`}
+          className={`border-filter-${type} border-2 flex items-center m-1 rounded-xl uppercase`}
         >
           {type}
         </ToggleGroupItem>
@@ -42,7 +42,7 @@ function ToggleType({ data }: { data: Result[] }) {
         <ToggleGroup
           type="single"
           value={value}
-          className="flex flex-wrap justify-center"
+          className="grid grid-cols-2"
           onValueChange={(value) => {
             if (value) {
               setValue(value);
@@ -51,11 +51,11 @@ function ToggleType({ data }: { data: Result[] }) {
           }}
         >
           <ToggleGroupItem
-            value="clear"
-            key="clear"
-            className="border-white  border-2 flex items-center m-1  justify-center rounded-xl capitalize"
+            value="all"
+            key="all"
+            className="border-white border-2 flex items-center m-1 rounded-xl col-span-2 uppercase"
           >
-            Limpiar
+            Todos
           </ToggleGroupItem>
 
           {data.map((type) => typeToggle(type.name))}

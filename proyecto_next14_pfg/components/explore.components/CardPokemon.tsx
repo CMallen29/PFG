@@ -5,6 +5,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import Link from "next/link";
 import { getImagePokemon } from "@/model/pokemon.fetch";
+import Image from "next/image";
 
 async function CardPokemon({
   dataPokemon,
@@ -35,8 +36,7 @@ async function CardPokemon({
                     </p>
                     <p className="">{pokemon.id}</p>
                   </div>
-
-                  <img
+                  <Image
                     src={getImagePokemon(
                       pokemon.sprites.other["official-artwork"].front_default
                     )}

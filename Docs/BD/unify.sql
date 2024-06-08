@@ -22,8 +22,7 @@ CREATE TABLE delete_users (
     name TEXT NOT NULL,
     register_date TIMESTAMP NOT NULL,
     avatar_path TEXT,
-    delete_date TIMESTAMP DEFAULT now() NOT NULL,
-    FOREIGN KEY (id_user) REFERENCES users(id)
+    delete_date TIMESTAMP DEFAULT now() NOT NULL
 );
 
 -- Crear la tabla change_users
@@ -33,16 +32,15 @@ CREATE TABLE change_users (
     field_modified TEXT NOT NULL,
     old_value TEXT NOT NULL,
     new_value TEXT NOT NULL,
-    change_date TIMESTAMP DEFAULT now() NOT NULL,
-    FOREIGN KEY (id_user) REFERENCES users(id)
+    change_date TIMESTAMP DEFAULT now() NOT NULL
 );
 
 -- Crear la función PL/pgSQL para el trigger before_delete_user
 CREATE OR REPLACE FUNCTION before_delete_user()
 RETURNS TRIGGER AS $$
 BEGIN
-    INSERT INTO delete_users (id_user, email, username, name, register_date, avatar_path, delete_date)
-    VALUES (OLD.id, OLD.email, OLD.username, OLD.name, OLD.register_date, OLD.avatar_path, now());
+    INSERT INTO delete_users (id_user, email, username, name, register_date, avatar_path)
+    VALUES (OLD.id, OLD.email, OLD.username, OLD.name, OLD.register_date, OLD.avatar_path);
     RETURN OLD;
 END;
 $$ LANGUAGE plpgsql;

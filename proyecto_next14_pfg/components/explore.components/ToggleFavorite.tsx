@@ -13,15 +13,8 @@ export function ToggleFavorite({
 }) {
   const router = useRouter();
 
-
   async function handleFavorite() {
-
-    console.log("sessionFav", sessionFav);
-    
-
-    if(sessionFav === undefined) {
-      console.log("No hay sesión");
-      
+    if (sessionFav === undefined) {
       router.push("/login");
       return;
     }

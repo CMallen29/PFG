@@ -11,4 +11,8 @@ export default function middleware(req: NextRequest) {
   if (!sessionCookie && url.includes("/profile")) {
     return NextResponse.redirect(new URL("/login", req.url));
   }
+
+  if (sessionCookie && (url.includes("/login") || url.includes("/register"))) {
+    return NextResponse.redirect(new URL("/profile", req.url));
+  }
 }

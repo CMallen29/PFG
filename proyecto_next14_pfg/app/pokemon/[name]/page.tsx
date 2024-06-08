@@ -66,17 +66,20 @@ async function page({ params }: { params: { name: string } }) {
         </div>
       </div>
 
-      <div className="flex flex-row w-4/5 gap-10">
-        <div className=" bg-greenUnify-600 min-w-fit w-4/5 min-h-fit mt-10 rounded-xl text-white">
-          <h2 className="text-2xl font-bold p-2">Estadísticas</h2>
-          <div className=" bg-greenUnify-900/90 p-5 rounded-b-xl col-span-2">
-            <ProgresBar dataPokemon={dataPokemon} />
-          </div>
+      <div className="grid grid-cols-2 gap-10 w-4/5">
+        <div className=" bg-greenUnify-900/90 rounded-xl mt-10">
+          <h2 className="w-full bg-greenUnify-500 p-2 rounded-t-xl text-2xl font-bold">
+            Estadísticas
+          </h2>
+          <ProgresBar dataPokemon={dataPokemon} />
         </div>
-        <div className=" bg-greenUnify-600 min-w-fit w-4/5 min-h-fit mt-10 rounded-xl text-white">
-          <h2 className="text-2xl font-bold p-2">Características</h2>
-          <div className=" bg-greenUnify-900/90 p-4 rounded-b-xl w-full text-lg">
-            <div className=" grid grid-cols-2 gap-5 ">
+
+        <div className="gap-10">
+          <div className=" bg-greenUnify-900/90 rounded-xl mt-10 ">
+            <h2 className="w-full bg-greenUnify-500 p-2 rounded-t-xl text-2xl font-bold">
+              Características
+            </h2>
+            <div className=" grid grid-cols-2 gap-5 uppercase text-white text-xl font-semibold p-10">
               <p>Generación:</p>
               <p className="capitalize">
                 {dataPokemonSpecies.generation.name.replaceAll("-", " ")}
@@ -112,15 +115,20 @@ async function page({ params }: { params: { name: string } }) {
 
       <div className="flex flex-row w-4/5 gap-10">
         <div className=" bg-greenUnify-900/90 rounded-xl w-3/4 mt-10">
-            <h2 className="w-full bg-greenUnify-500 p-2 rounded-t-xl text-2xl font-bold">RUGIDO</h2>
-          <div className="flex bg-warningUnify-800 justify-center">
+          <h2 className="w-full bg-greenUnify-500 p-2 rounded-t-xl text-2xl font-bold">
+            Riguido
+          </h2>
+          <div className="flex justify-center p-10">
             <audio src={dataPokemon.cries.latest} controls>
               aqui
             </audio>
           </div>
         </div>
-        <div className=" bg-greenUnify-900/90 p-10 rounded-xl col-span-2 w-3/4 mt-10">
-          <div className="flex flex-col">
+        <div className="flex flex-col bg-greenUnify-900/90 rounded-xl w-3/4 mt-10">
+          <h2 className="w-full bg-greenUnify-500 p-2 rounded-t-xl text-2xl font-bold">
+            Tipos
+          </h2>
+          <div className="flex flex-col justify-center p-10">
             {dataPokemon.types.map((type) => (
               <div
                 key={type.slot}
@@ -133,8 +141,11 @@ async function page({ params }: { params: { name: string } }) {
             ))}
           </div>
         </div>
-        <div className=" bg-greenUnify-900/90 p-10 rounded-xl col-span-2 w-3/4 mt-10">
-          <div className="px-10 grid grid-cols-1 gap-4">
+        <div className=" bg-greenUnify-900/90 rounded-xl col-span-2 w-3/4 mt-10">
+          <h2 className="w-full bg-greenUnify-500 p-2 rounded-t-xl text-2xl font-bold">
+            Especial
+          </h2>
+          <div className="px-10 grid grid-cols-1 gap-4 p-10">
             <p className="flex justify-between">
               LEGENDARIO:{" "}
               {dataPokemonSpecies.is_legendary ? (
@@ -155,26 +166,70 @@ async function page({ params }: { params: { name: string } }) {
         </div>
       </div>
 
-      <div className=" bg-greenUnify-600 min-w-fit w-4/5 min-h-fit h-full mt-10 rounded-xl text-white">
-        <h2 className="text-2xl font-bold  p-2">Sprites</h2>
-        <div className="grid grid-cols-4 items-center bg-greenUnify-900/90 p-4 w-full rounded-b-xl ">
-          <div>
+      <div className="flex flex-row w-4/5 gap-10">
+        <div className=" bg-greenUnify-900/90 rounded-xl w-3/4 mt-10">
+          <h2 className="w-full bg-greenUnify-500 p-2 rounded-t-xl text-2xl font-bold">
+            Sprites
+          </h2>
+          <div className="grid grid-cols-2 place-content-center justify-items-center p-10">
+            <Image
+              src={getImagePokemon(dataPokemon.sprites.front_default)}
+              alt="front_default"
+              width={"200"}
+              height={"200"}
+            />
+
+            <Image
+              src={getImagePokemon(dataPokemon.sprites.back_default)}
+              alt="back_default"
+              width={"200"}
+              height={"200"}
+            />
+            <Image
+              src={getImagePokemon(dataPokemon.sprites.front_shiny)}
+              alt="front_shiny"
+              width={"200"}
+              height={"200"}
+            />
+            <Image
+              src={getImagePokemon(dataPokemon.sprites.back_shiny)}
+              alt="back_shiny"
+              width={"200"}
+              height={"200"}
+            />
+            <Image
+              src={getImagePokemon(
+                dataPokemon.sprites.versions["generation-v"]["black-white"]
+                  .animated.front_default
+              )}
+              alt="animated_front"
+              width={"200"}
+              height={"200"}
+            />
+            <Image
+              src={getImagePokemon(
+                dataPokemon.sprites.versions["generation-v"]["black-white"]
+                  .animated.back_default
+              )}
+              alt="animated_back"
+              width={"200"}
+              height={"200"}
+            />
+          </div>
+        </div>
+        <div className=" bg-greenUnify-900/90 rounded-xl w-3/4 mt-10">
+          <h2 className="w-full bg-greenUnify-500 p-2 rounded-t-xl text-2xl font-bold">
+            Shiny
+          </h2>
+          <div className="flex justify-center items-center pt-20">
             <Image
               src={getImagePokemon(
                 dataPokemon.sprites.other["official-artwork"].front_shiny
               )}
               alt=""
-              width="200"
-              height="200"
+              width="600"
+              height="600"
             />
-          </div>
-
-          <div>
-            <p>SPRITES</p>
-            <Image src={dataPokemon.sprites.front_default} alt="" width={"100"} height={"100"}/>
-          </div>
-          <div>
-            <Image src={dataPokemon.sprites.front_shiny} alt="" width={"100"} height={"100"}/>
           </div>
         </div>
       </div>

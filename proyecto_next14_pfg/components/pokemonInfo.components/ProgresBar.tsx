@@ -2,7 +2,7 @@ import { Pokemon } from "@/types/pokemon.types";
 
 function ProgresBar({ dataPokemon }: { dataPokemon: Pokemon }) {
   return (
-    <div>
+    <div className="p-5">
       {dataPokemon.stats.map((item) => (
         <div key={item.stat.name}>
           <div className="flex justify-between pt-4 pl-1 pr-9 uppercase text-white text-xl font-semibold">

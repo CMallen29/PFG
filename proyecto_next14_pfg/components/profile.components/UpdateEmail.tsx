@@ -58,11 +58,11 @@ const UpdateEmail = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-6">
         <Collapsible
           open={isOpen}
           onOpenChange={setIsOpen}
-          className="w-[350px] space-y-2"
+          className="w-full space-y-2 pb-2"
         >
           <div className="flex items-center justify-between">
             <CollapsibleTrigger asChild>

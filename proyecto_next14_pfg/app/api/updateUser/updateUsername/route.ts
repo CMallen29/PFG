@@ -47,7 +47,7 @@ export async function POST(request: Request) {
       },
     });
     return NextResponse.json({
-      user: updateUsername,
+      user: updateUsername.name,
       message: "Nombre de usuario actualizado",
       status: 201,
     });

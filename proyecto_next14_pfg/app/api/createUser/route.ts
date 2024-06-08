@@ -65,7 +65,7 @@ export async function POST(request: Request) {
     const { password: newUserPassword, ...rest } = newUser;
 
     return NextResponse.json({
-      user: rest,
+      user: rest.name,
       message: "Usuario creado",
       status: 201,
     });

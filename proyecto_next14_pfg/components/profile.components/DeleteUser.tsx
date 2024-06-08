@@ -13,8 +13,9 @@ import { signOut } from "next-auth/react";
 function DeleteUser() {
   const [isOpen, setIsOpen] = React.useState(false);
 
-  const onSubmit = async () => {
-    //Llamamos a updateUsername para modificar el nombre de usuario
+  const onSubmit = async (event: React.FormEvent) => {
+    //hacemos preventdafault para que no se recargue la página
+    event.preventDefault();
 
     const response = await fetch("/api/deleteUser", {
       method: "POST",
@@ -24,7 +25,8 @@ function DeleteUser() {
     });
 
     if (response.ok) {
-      signOut({
+      await signOut({
+        redirect: true,
         callbackUrl: `${window.location.origin}/`,
       });
       console.log("Usuario eliminado correctamente");

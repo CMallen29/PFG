@@ -14,7 +14,6 @@ model change_users {
   old_value      String
   new_value      String
   change_date    DateTime @default(now()) @db.Timestamp(6)
-  users          users    @relation(fields: [id_user], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model delete_users {
@@ -24,22 +23,19 @@ model delete_users {
   name          String
   register_date DateTime @db.Timestamp(6)
   avatar_path   String?
-  id_user       String?  @db.Uuid
+  id_user       String   @db.Uuid
   delete_date   DateTime @default(now()) @db.Timestamp(6)
-  users         users?   @relation(fields: [id_user], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model users {
-  id            String         @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  email         String         @unique
-  username      String         @unique
+  id            String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  email         String   @unique
+  username      String   @unique
   password      String
   name          String
-  register_date DateTime       @default(now()) @db.Timestamp(6)
+  register_date DateTime @default(now()) @db.Timestamp(6)
   save_pokemon  Int[]
-  avatar_path   String?        @default("'user.png'::text")
-  last_visit    DateTime       @default(now()) @db.Timestamptz(6)
-  admin         Boolean        @default(false)
-  change_users  change_users[]
-  delete_users  delete_users[]
+  avatar_path   String?  @default("user.png")
+  last_visit    DateTime @default(now()) @db.Timestamptz(6)
+  admin         Boolean  @default(false)
 }

@@ -11,6 +11,7 @@ import { PokemonSpecies } from "@/types/pokemon-species.types";
 import { Pokemon } from "@/types/pokemon.types";
 import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/outline";
 import { getServerSession } from "next-auth";
+import Image from "next/image";
 import React from "react";
 
 async function page({ params }: { params: { name: string } }) {
@@ -38,11 +39,11 @@ async function page({ params }: { params: { name: string } }) {
           <ToggleFavorite id={dataPokemon.id} sessionFav={sessionFav} />
         </div>
         <div className="flex flex-col justify-center items-center">
-          <img
+          <Image
             src={getImagePokemon(
               dataPokemon.sprites.other["official-artwork"].front_default
             )}
-            alt=""
+            alt="Pokemon"
             width="500"
             height="500"
             className="absolute mb-10 mr-20 drop-shadow-[2px_2px_rgba(0,0,0)] "
@@ -110,9 +111,9 @@ async function page({ params }: { params: { name: string } }) {
       </div>
 
       <div className="flex flex-row w-4/5 gap-10">
-        <div className=" bg-greenUnify-900/90 p-10 rounded-xl col-span-2 w-3/4 mt-10">
-          <div>
-            CRIES
+        <div className=" bg-greenUnify-900/90 rounded-xl w-3/4 mt-10">
+            <h2 className="w-full bg-greenUnify-500 p-2 rounded-t-xl text-2xl font-bold">RUGIDO</h2>
+          <div className="flex bg-warningUnify-800 justify-center">
             <audio src={dataPokemon.cries.latest} controls>
               aqui
             </audio>
@@ -158,7 +159,7 @@ async function page({ params }: { params: { name: string } }) {
         <h2 className="text-2xl font-bold  p-2">Sprites</h2>
         <div className="grid grid-cols-4 items-center bg-greenUnify-900/90 p-4 w-full rounded-b-xl ">
           <div>
-            <img
+            <Image
               src={getImagePokemon(
                 dataPokemon.sprites.other["official-artwork"].front_shiny
               )}
@@ -170,10 +171,10 @@ async function page({ params }: { params: { name: string } }) {
 
           <div>
             <p>SPRITES</p>
-            <img src={dataPokemon.sprites.front_default} alt="" />
+            <Image src={dataPokemon.sprites.front_default} alt="" width={"100"} height={"100"}/>
           </div>
           <div>
-            <img src={dataPokemon.sprites.front_shiny} alt="" />
+            <Image src={dataPokemon.sprites.front_shiny} alt="" width={"100"} height={"100"}/>
           </div>
         </div>
       </div>
